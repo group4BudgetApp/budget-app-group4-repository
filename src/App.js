@@ -10,7 +10,9 @@ const dbRef = ref(database);
 console.log(dbRef);
 
 function App() {
-	return <div className="App"></div>;
+	return <div className="App">
+    <p>test</p>
+  </div>;
 }
 
 export default App;
