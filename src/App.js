@@ -12,6 +12,7 @@ console.log(dbRef);
 function App() {
 	return <div className="App">
     <p>test</p>
+    <p>gia-test</p>
   </div>;
 }
 
