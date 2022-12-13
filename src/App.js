@@ -35,6 +35,10 @@ function App() {
       <section className="budgetForm">
         {/* budgetForm Component */}
       </section>
+      <secion className="liveBudget">
+        {/* LiveBudget Component */}
+        <LiveBudget />
+      </secion>
       <section className="arrowButton">
         <Arrow />
       </section>
