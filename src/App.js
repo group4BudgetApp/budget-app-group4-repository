@@ -1,6 +1,9 @@
 import "./App.css";
 import firebase from "./firebase";
 import {getDatabase, ref} from "firebase/database";
+import Arrow from "./Arrow";
+import Logo from "./Logo"
+import NavBar from "./NavBar";
 
 // Firebase initialization
 const database = getDatabase(firebase);
