@@ -1,4 +1,4 @@
-const DailyForm = () => {
+const DailyEntry = () => {
 	return (
 		// flex-direction: row
 		<section className="dailyEntry">
