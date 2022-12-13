@@ -1,5 +1,6 @@
 import "./App.css";
 import firebase from "./firebase";
+
 import {useState, useEffect} from 'react';
 import {getDatabase, ref, onValue, push, remove} from "firebase/database";
 import {Route, Routes} from 'react-router-dom';
@@ -10,6 +11,7 @@ import LiveBudget from './LiveBudget';
 
 
 function App() {
+
 
   useEffect(() => {
     // Firebase initialization
