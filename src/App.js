@@ -1,5 +1,7 @@
 import "./App.css";
 import firebase from "./firebase";
+import FormBudget from "./FormBudget";
+
 
 import {useState, useEffect} from 'react';
 import {getDatabase, ref, onValue, push, remove} from "firebase/database";
@@ -36,6 +38,7 @@ function App() {
     <main>
       <section className="budgetForm">
         {/* budgetForm Component */}
+        <FormBudget/>
       </section>
       <secion className="liveBudget">
         {/* LiveBudget Component */}
