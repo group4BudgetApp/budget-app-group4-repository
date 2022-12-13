@@ -18,6 +18,7 @@ const DailyEntry = () => {
 					<input type="text" maxLength={20} minLength={1} id="entryName" name="entryName" />
 					<label htmlFor="entryName">Entry Cost</label>
 					<input type="number" max={999999999999} min={0} step={0.01} id="entryCost" name="entryCost" />
+					<button>Submit</button>
 				</form>
 			</div>
 
