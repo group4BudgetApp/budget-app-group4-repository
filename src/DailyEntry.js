@@ -33,3 +33,5 @@ const DailyForm = () => {
 		</section>
 	);
 };
+
+export default DailyEntry;
