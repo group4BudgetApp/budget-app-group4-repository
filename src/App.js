@@ -36,10 +36,10 @@ function App() {
 						{/* budgetForm Component */}
 						<FormBudget />
 					</section>
-					<secion className="liveBudget">
+					<section className="liveBudget">
 						{/* LiveBudget Component */}
 						<LiveBudget />
-					</secion>
+					</section>
 					<section className="arrowButton">
 						<Arrow />
 					</section>
