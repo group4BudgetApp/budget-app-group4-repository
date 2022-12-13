@@ -1,7 +1,6 @@
 import "./App.css";
 import firebase from "./firebase";
 import FormBudget from "./FormBudget";
-
 import {useState, useEffect} from "react";
 import {getDatabase, ref, onValue, push, remove} from "firebase/database";
 import {Route, Routes} from "react-router-dom";
@@ -12,14 +11,35 @@ import LiveBudget from "./LiveBudget";
 import DailyEntry from "./DailyEntry";
 
 function App() {
-	useEffect(() => {
-		// Firebase initialization
-		const database = getDatabase(firebase);
-		// dbRed will reference our database
-		const dbRef = ref(database);
-		// Test firebase
-		console.log(dbRef);
-	}, []); // End of useEffect
+	const [userBudgetData, setUserBudgetData] = useState({});
+
+	// Firebase initialization
+	const database = getDatabase(firebase);
+	const dbRef = ref(database);
+
+	const formBudgetOnChange = (e) => {
+		console.log(e.target.value);
+		const tempValue = e.target.value;
+		setUserBudgetData({
+			...userBudgetData,
+			[e.target.name]: tempValue,
+		});
+		console.log(userBudgetData);
+	};
+
+	const formBudgetOnSubmit = (e) => {
+		e.preventDefault();
+		push(dbRef, userBudgetData);
+	};
+
+	// useEffect(() => {
+	// 	// Firebase initialization
+	// 	const database = getDatabase(firebase);
+	// 	// dbRed will reference our database
+	// 	const dbRef = ref(database);
+	// 	// Test firebase
+	// 	console.log(dbRef);
+	// }, []); // End of useEffect
 
 	// JSX
 	return (
@@ -34,7 +54,7 @@ function App() {
 				<main>
 					<section className="budgetForm">
 						{/* budgetForm Component */}
-						<FormBudget />
+						<FormBudget formBudgetOnChange={formBudgetOnChange} formBudgetOnSubmit={formBudgetOnSubmit} />
 					</section>
 					<section className="liveBudget">
 						{/* LiveBudget Component */}
