@@ -11,7 +11,10 @@ import LiveBudget from "./LiveBudget";
 import DailyEntry from "./DailyEntry";
 
 function App() {
+	// pieces of state
 	const [userBudgetData, setUserBudgetData] = useState({});
+	const [inputPrice, setInputPrice] = useState('');
+	const [inputItem, setInputItem] = useState('');
 
 	// Firebase initialization
 	const database = getDatabase(firebase);
@@ -32,14 +35,30 @@ function App() {
 		push(dbRef, userBudgetData);
 	};
 
-	// useEffect(() => {
-	// 	// Firebase initialization
-	// 	const database = getDatabase(firebase);
-	// 	// dbRed will reference our database
-	// 	const dbRef = ref(database);
-	// 	// Test firebase
-	// 	console.log(dbRef);
-	// }, []); // End of useEffect
+	// the handleInputChange function handles the user's input as it is typed into the form
+  	const handleInputChange = (e) => {
+    // this tells react to update the state of the App component to include whatever is currently the value of the input of the form
+    setInputPrice(e.target.value);
+	setInputItem(e.target.value)
+  	}
+
+	// this function handles what is pushed up to firebase on submission of the dailyEntry Form
+	const handleSubmit = (e) => {
+    // prevent default browser refresh after form submission
+    e.preventDefault();
+    // create a database variable containing the imported firebase config
+    const database = getDatabase(firebase);
+    // create a variable that references this database
+    const dbRef = ref(database);
+	console.log(inputPrice, inputItem)
+    // push the userInput state (with its bound value property) to the database
+    push(dbRef, inputPrice, inputItem)    
+    // after submission, replace the input with an empty string, as the content of the last submit has already been pushed to the database above
+    setInputPrice('');
+	setInputItem('');
+    }    
+  
+
 
 	// JSX
 	return (
@@ -52,9 +71,12 @@ function App() {
 					<NavBar />
 				</header>
 				<main>
-					<section className="budgetForm">
-						{/* budgetForm Component */}
-						<FormBudget formBudgetOnChange={formBudgetOnChange} formBudgetOnSubmit={formBudgetOnSubmit} />
+					<section className="formBudget">
+						{/* formBudget Component */}
+						<FormBudget 
+						formBudgetOnChange={formBudgetOnChange} 
+						formBudgetOnSubmit={formBudgetOnSubmit} 
+						/>
 					</section>
 					<section className="liveBudget">
 						{/* LiveBudget Component */}
@@ -65,7 +87,12 @@ function App() {
 					</section>
 					<section className="expensesForm">
 						{/* expensesForm Component */}
-						<DailyEntry />
+						<DailyEntry 
+						inputPrice={inputPrice}
+						inputItem={inputItem}
+						handleSubmit={handleSubmit}
+						handleInputChange={handleInputChange}
+						/>
 					</section>
 				</main>
 				<footer>{/* Footer Component */}</footer>
