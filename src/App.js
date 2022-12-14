@@ -2,7 +2,7 @@ import "./App.css";
 import firebase from "./firebase";
 import FormBudget from "./FormBudget";
 import {useState, useEffect} from "react";
-import {getDatabase, ref, onValue, push, remove} from "firebase/database";
+import {getDatabase, ref, onValue, push, remove, get} from "firebase/database";
 import {Route, Routes} from "react-router-dom";
 import Arrow from "./Arrow";
 import Logo from "./Logo";
@@ -15,10 +15,14 @@ function App() {
 	const [userBudgetData, setUserBudgetData] = useState({});
 	const [inputPrice, setInputPrice] = useState('');
 	const [inputItem, setInputItem] = useState('');
+	const [userID, setUserID] = useState('');
+	const [userData, setUserData] = useState('');
 
 	// Firebase initialization
 	const database = getDatabase(firebase);
 	const dbRef = ref(database);
+
+	const dbUser = ref(database,  `/${userID}`) 
 
 	const formBudgetOnChange = (e) => {
 		console.log(e.target.value);
@@ -32,8 +36,17 @@ function App() {
 
 	const formBudgetOnSubmit = (e) => {
 		e.preventDefault();
-		push(dbRef, userBudgetData);
+		const pushEvent = push(dbRef, userBudgetData);
+		setUserID(pushEvent._path.pieces_[0])
+		getUserData()
 	};
+
+	const getUserData = () => {
+		get(dbUser)
+		.then((data) => {
+			const tempData = data.val()
+			setUserData(tempData)
+		})
 
 	// the handleInputChange function handles the user's input as it is typed into the form
   	const handleInputChange = (e) => {
@@ -50,7 +63,7 @@ function App() {
     const database = getDatabase(firebase);
     // create a variable that references this database
     const dbRef = ref(database);
-	console.log(inputPrice, inputItem)
+
     // push the userInput state (with its bound value property) to the database
     push(dbRef, inputPrice, inputItem)    
     // after submission, replace the input with an empty string, as the content of the last submit has already been pushed to the database above
@@ -71,12 +84,13 @@ function App() {
 					<NavBar />
 				</header>
 				<main>
-					<section className="formBudget">
-						{/* formBudget Component */}
-						<FormBudget 
-						formBudgetOnChange={formBudgetOnChange} 
-						formBudgetOnSubmit={formBudgetOnSubmit} 
-						/>
+					<section className="budgetForm">
+						{/* budgetForm Component */}
+						<FormBudget formBudgetOnChange={formBudgetOnChange} formBudgetOnSubmit={formBudgetOnSubmit} />
+						<p>Average Daily Budget:
+							{ userData ? (userData.totalIncome / userData.daysNum).toFixed(2) : null}
+							</p>
+						<button onClick={getUserData}>ayo</button>
 					</section>
 					<section className="liveBudget">
 						{/* LiveBudget Component */}
