@@ -2,7 +2,7 @@ import "./App.css";
 import firebase from "./firebase";
 import FormBudget from "./FormBudget";
 import {useState, useEffect} from "react";
-import {getDatabase, ref, onValue, push, remove} from "firebase/database";
+import {getDatabase, ref, onValue, push, remove, get} from "firebase/database";
 import {Route, Routes} from "react-router-dom";
 import Arrow from "./Arrow";
 import Logo from "./Logo";
@@ -12,10 +12,14 @@ import DailyEntry from "./DailyEntry";
 
 function App() {
 	const [userBudgetData, setUserBudgetData] = useState({});
+	const [userID, setUserID] = useState('');
+	const [userData, setUserData] = useState('');
 
 	// Firebase initialization
 	const database = getDatabase(firebase);
 	const dbRef = ref(database);
+
+	const dbUser = ref(database,  `/${userID}`) 
 
 	const formBudgetOnChange = (e) => {
 		console.log(e.target.value);
@@ -29,8 +33,18 @@ function App() {
 
 	const formBudgetOnSubmit = (e) => {
 		e.preventDefault();
-		push(dbRef, userBudgetData);
+		const pushEvent = push(dbRef, userBudgetData);
+		setUserID(pushEvent._path.pieces_[0])
+		getUserData()
 	};
+
+	const getUserData = () => {
+		get(dbUser)
+		.then((data) => {
+			const tempData = data.val()
+			setUserData(tempData)
+		})
+	}
 
 	// useEffect(() => {
 	// 	// Firebase initialization
@@ -55,6 +69,10 @@ function App() {
 					<section className="budgetForm">
 						{/* budgetForm Component */}
 						<FormBudget formBudgetOnChange={formBudgetOnChange} formBudgetOnSubmit={formBudgetOnSubmit} />
+						<p>Average Daily Budget:
+							{ userData ? (userData.totalIncome / userData.daysNum).toFixed(2) : null}
+							</p>
+						<button onClick={getUserData}>ayo</button>
 					</section>
 					<section className="liveBudget">
 						{/* LiveBudget Component */}
