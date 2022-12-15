@@ -27,7 +27,7 @@ function App() {
 	const database = getDatabase(firebase);
 	// Firebase location: global scope of the database
 	const dbRef = ref(database);
-	// //Firebase locastion: inside the individual ID
+	// //Firebase location: inside the individual ID
 	const dbUserInit = ref(database, `/${userID}`);
 	// Firebase location: to the individual days within the spending node
 	const dbUserDaily = ref(database, `/${userID}/spending/day`);
@@ -110,21 +110,43 @@ function App() {
 			console.log(userData);
 		});
 	};
-
+	
 	const copyID = () => {
 		navigator.clipboard.writeText(userID);
 	};
 
+	// this function handles what is pushed up to firebase on submission of the dailyEntry Form
+	const handleSubmit = (e) => {
+    // prevent default browser refresh after form submission
+    e.preventDefault();
+    // create a database variable containing the imported firebase config
+    const database = getDatabase(firebase);
+	// temporary setting of the currentDay until counter is implemented
+	setCurrentDay("Day1");
+	// this variable references the database for the item
+	const dbItem = ref(database, `${currentDay}/${item}`)
+	// this variable references the database for the price
+	const dbPrice = ref(database, `${currentDay}/${price}`)
+    // push the userInput state (with its bound value property) to the database
+    push(dbItem, inputItem)    
+	push(dbPrice, inputPrice)  
+    // after submission, replace the input with an empty string, as the content of the last submit has already been pushed to the database above
+    setInputPrice('');
+	setInputItem('');
+    }    
 
-		const tempObj = {
-			inputItem: inputPrice,
-		};
-		// push the userInput state (with its bound value property) to the database
-		push(dbUserDaily, tempObj);
-		// after submission, replace the input with an empty string, as the content of the last submit has already been pushed to the database above
-		setInputPrice("");
-		setInputItem("");
-	};
+
+	// the handlePriceChange function handles the user's inputPrice as it is typed into the DailyEntry form
+  	const handlePriceChange = (e) => {
+    // this tells react to update the state of the App component to include whatever is currently the value of the input of the form
+    setInputPrice(e.target.value);
+  	}
+
+	// the handleItemChange function handles the user's inputItem as it is typed into the DailyEntry form
+	const handleItemChange = (e) => {
+    // this tells react to update the state of the App component to include whatever is currently the value of the input of the form
+    setInputItem(e.target.value);
+  	}
 
 	// JSX
 	return (
@@ -137,7 +159,7 @@ function App() {
 					<NavBar />
 				</header>
 				<main>
-          // ternary operator used to display user sign-up/login 
+					{/* ternary operator used to display user sign-up/login  */}
 					{userData.initData ? (
 						<>
 							<section className="budgetForm">
@@ -154,7 +176,7 @@ function App() {
 							</section>
 							<section className="expensesForm">
 								{/* expensesForm Component */}
-								<DailyEntry inputPrice={inputPrice} inputItem={inputItem} handleSubmit={handleSubmit} handleInputChange={handleInputChange} />
+								<DailyEntry inputPrice={inputPrice} inputItem={inputItem} handleSubmit={handleSubmit} handleItemChange={handleItemChange} handlePriceChange={handlePriceChange} />
 							</section>
 						</>
 					) : (
