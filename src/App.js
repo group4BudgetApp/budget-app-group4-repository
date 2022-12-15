@@ -89,8 +89,7 @@ function App() {
 	setCurrentDay("Day1");
 
 	const dbPacked = {
-		itemName: inputItem,
-		itemPrice: inputPrice
+		[inputItem]: inputPrice
 	}
 	// push dbPacked up to dbUserDaily
 	push(dbUserDaily, dbPacked);
