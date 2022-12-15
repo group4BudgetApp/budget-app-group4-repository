@@ -126,7 +126,7 @@ function App() {
 					<NavBar />
 				</header>
 				<main>
-					// ternary operator used to display user sign-up/login 
+					{/* ternary operator used to display user sign-up/login  */}
 					{userData.initData ? (
 						<>
 							<section className="budgetForm">
