@@ -1,4 +1,4 @@
-const DailyEntry = () => {
+const DailyEntry = ({inputPrice, inputItem, handleSubmit, handleInputChange}) => {
 	return (
 		// flex-direction: row
 		<section className="dailyEntry">
@@ -14,11 +14,22 @@ const DailyEntry = () => {
 				</div>
 				{/* flex-direction: column */}
 				<form action="">
-					<label htmlFor="entryName">Entry Name</label>
-					<input type="text" maxLength={20} minLength={1} id="entryName" name="entryName" />
-					<label htmlFor="entryName">Entry Cost</label>
-					<input type="number" max={999999999999} min={0} step={0.01} id="entryCost" name="entryCost" />
-					<button>Submit</button>
+					{/* Input Item */}
+					<label htmlFor="entryName">Input Item</label>
+					<input type="text" maxLength={20} minLength={1} id="entryName" name="entryName" 
+					// binding the inputItem state to the value attribute
+                	value={inputItem}
+					onChange={handleInputChange}
+					/>
+
+					{/* Input Price */}
+					<label htmlFor="entryName">Input Price</label>
+					<input type="number" max={999999999999} min={0} step={0.01} id="entryCost" name="entryCost" 
+					// binding the inputPrice state to the value attribute
+                	value={inputPrice}
+					onChange={handleInputChange}	
+					/>
+					<button onClick={handleSubmit}>Submit</button>
 				</form>
 			</div>
 
@@ -36,3 +47,4 @@ const DailyEntry = () => {
 };
 
 export default DailyEntry;
+

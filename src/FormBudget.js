@@ -5,6 +5,8 @@ const FormBudget = ({formBudgetOnChange, formBudgetOnSubmit}) => {
 	return (
 		<div>
 			<form onSubmit={formBudgetOnSubmit}>
+				<label htmlFor="userName">Name</label>
+				<input type="text" id="userName" name="userName" placeholder="Please enter your name" maxLength={20} onChange={formBudgetOnChange} />
 				<label htmlFor="totalIncome">Total Income:</label>
 				<input type="text" id="totalIncome" name="totalIncome" placeholder="Total Income" max={9999999999} min={0} step={0.01} onChange={formBudgetOnChange} />
 				<label htmlFor="daysNum">Over How Many Days?:</label>
