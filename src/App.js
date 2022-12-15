@@ -3,7 +3,6 @@ import firebase from "./firebase";
 import FormBudget from "./FormBudget";
 import {useState, useEffect} from "react";
 import {getDatabase, ref, onValue, push, remove, get} from "firebase/database";
-import {Route, Routes} from "react-router-dom";
 import Arrow from "./Arrow";
 import Logo from "./Logo";
 import NavBar from "./NavBar";
@@ -13,10 +12,15 @@ import DailyEntry from "./DailyEntry";
 function App() {
 	// pieces of state
 	const [userBudgetData, setUserBudgetData] = useState({});
+	// these take the user's input in the DailyEntry Form
 	const [inputPrice, setInputPrice] = useState('');
 	const [inputItem, setInputItem] = useState('');
+	// these hold the data (originally from the DailyEntry Form) to be sent to the database
+	const [item, setItem] = useState('');
+	const [price, setPrice] = useState('');
 	const [userID, setUserID] = useState('');
 	const [userData, setUserData] = useState('');
+	const [currentDay, setCurrentDay] = useState('');
 
 	// Firebase initialization
 	const database = getDatabase(firebase);
@@ -47,13 +51,9 @@ function App() {
 			const tempData = data.val()
 			setUserData(tempData)
 		})
+	}
 
-	// the handleInputChange function handles the user's input as it is typed into the form
-  	const handleInputChange = (e) => {
-    // this tells react to update the state of the App component to include whatever is currently the value of the input of the form
-    setInputPrice(e.target.value);
-	setInputItem(e.target.value)
-  	}
+	
 
 	// this function handles what is pushed up to firebase on submission of the dailyEntry Form
 	const handleSubmit = (e) => {
@@ -61,16 +61,35 @@ function App() {
     e.preventDefault();
     // create a database variable containing the imported firebase config
     const database = getDatabase(firebase);
-    // create a variable that references this database
-    const dbRef = ref(database);
-
+	// temporary setting of the currentDay until counter is implemented
+	setCurrentDay("Day1");
+	// this variable references the database for the item
+	const dbItem = ref(database, `${currentDay}/${item}`)
+	// this variable references the database for the price
+	const dbPrice = ref(database, `${currentDay}/${price}`)
     // push the userInput state (with its bound value property) to the database
-    push(dbRef, inputPrice, inputItem)    
+    push(dbItem, inputItem)    
+	push(dbPrice, inputPrice)  
     // after submission, replace the input with an empty string, as the content of the last submit has already been pushed to the database above
     setInputPrice('');
 	setInputItem('');
     }    
-  
+
+
+	// the handlePriceChange function handles the user's inputPrice as it is typed into the DailyEntry form
+  	const handlePriceChange = (e) => {
+    // this tells react to update the state of the App component to include whatever is currently the value of the input of the form
+    setInputPrice(e.target.value);
+  	}
+
+	// the handleItemChange function handles the user's inputItem as it is typed into the DailyEntry form
+	const handleItemChange = (e) => {
+    // this tells react to update the state of the App component to include whatever is currently the value of the input of the form
+    setInputItem(e.target.value);
+  	}
+
+
+	
 
 
 	// JSX
@@ -105,7 +124,8 @@ function App() {
 						inputPrice={inputPrice}
 						inputItem={inputItem}
 						handleSubmit={handleSubmit}
-						handleInputChange={handleInputChange}
+						handleItemChange={handleItemChange}
+						handlePriceChange={handlePriceChange}
 						/>
 					</section>
 				</main>
