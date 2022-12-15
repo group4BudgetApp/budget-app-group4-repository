@@ -85,20 +85,18 @@ function App() {
 	const handleSubmit = (e) => {
     // prevent default browser refresh after form submission
     e.preventDefault();
-    // create a database variable containing the imported firebase config
-    const database = getDatabase(firebase);
 	// temporary setting of the currentDay until counter is implemented
 	setCurrentDay("Day1");
-	// this variable references the database for the item
-	const dbItem = ref(database, `${currentDay}/${item}`)
-	// this variable references the database for the price
-	const dbPrice = ref(database, `${currentDay}/${price}`)
-    // push the userInput state (with its bound value property) to the database
-    push(dbItem, inputItem)    
-	push(dbPrice, inputPrice)  
+
+	const dbPacked = {
+		itemName: inputItem,
+		itemPrice: inputPrice
+	}
+	// push dbPacked up to dbUserDaily
+	push(dbUserDaily, dbPacked);
+
     // after submission, replace the input with an empty string, as the content of the last submit has already been pushed to the database above
-    setInputPrice('');
-	setInputItem('');
+	// e.target.reset();
     }    
 
 
