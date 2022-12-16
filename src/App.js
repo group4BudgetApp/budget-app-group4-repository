@@ -14,14 +14,14 @@ function App() {
 	// pieces of state
 	const [userBudgetData, setUserBudgetData] = useState({});
 	// these take the user's input in the DailyEntry Form
-	const [inputPrice, setInputPrice] = useState('');
-	const [inputItem, setInputItem] = useState('');
+	const [inputPrice, setInputPrice] = useState("");
+	const [inputItem, setInputItem] = useState("");
 	// these hold the data (originally from the DailyEntry Form) to be sent to the database
-	const [item, setItem] = useState('');
-	const [price, setPrice] = useState('');
-	const [userID, setUserID] = useState('');
-	const [userData, setUserData] = useState('');
-	const [currentDay, setCurrentDay] = useState('');
+	const [item, setItem] = useState("");
+	const [price, setPrice] = useState("");
+	const [userID, setUserID] = useState("");
+	const [userData, setUserData] = useState("");
+	const [currentDay, setCurrentDay] = useState("");
 
 	// Firebase initialization
 	const database = getDatabase(firebase);
@@ -33,7 +33,6 @@ function App() {
 	const dbUserDaily = ref(database, `/${userID}/spending/day`);
 	// Firebase location: to the liveData node
 	const dbLiveData = ref(database, `/${userID}/liveData`);
-	
 
 	// tracks the changes within the FormBudget and stores the changes within a state
 	const formBudgetOnChange = (e) => {
@@ -64,12 +63,11 @@ function App() {
 
 		const dbTemp = ref(database, `/${pushEvent._path.pieces_[0]}/liveData`);
 
-
 		// push a duplicate of the totalIncome to firebase
 		const balance = {userBalance: userBudgetData.totalIncome};
-		console.log(userBudgetData.totalIncome)
+		console.log(userBudgetData.totalIncome);
 		update(dbTemp, balance);
-		
+
 		e.target.reset();
 	};
 
@@ -81,99 +79,63 @@ function App() {
 
 	// function responsible for retrieving user data from firebase based on the userID state
 	const getUserData = () => {
-
-
-	// this function handles what is pushed up to firebase on submission of the dailyEntry Form
-	const handleSubmit = (e) => {
-    // prevent default browser refresh after form submission
-    e.preventDefault();
-    // create a database variable containing the imported firebase config
-    const database = getDatabase(firebase);
-	// temporary setting of the currentDay until counter is implemented
-	setCurrentDay("Day1");
-	// this variable references the database for the item
-	const dbItem = ref(database, `${currentDay}/${item}`)
-	// this variable references the database for the price
-	const dbPrice = ref(database, `${currentDay}/${price}`)
-    // push the userInput state (with its bound value property) to the database
-    push(dbItem, inputItem)    
-	push(dbPrice, inputPrice)  
-    // after submission, replace the input with an empty string, as the content of the last submit has already been pushed to the database above
-    setInputPrice('');
-	setInputItem('');
-    }    
-
-	// the handlePriceChange function handles the user's inputPrice as it is typed into the DailyEntry form
-  	const handlePriceChange = (e) => {
-    // this tells react to update the state of the App component to include whatever is currently the value of the input of the form
-    setInputPrice(e.target.value);
-  	}
-
-	// the handleItemChange function handles the user's inputItem as it is typed into the DailyEntry form
-	const handleItemChange = (e) => {
-    // this tells react to update the state of the App component to include whatever is currently the value of the input of the form
-    setInputItem(e.target.value);
-  	}
-
-   // grabs user initialization data to get the app started
+		// grabs user initialization data to get the app started
 		get(dbUserInit).then((data) => {
 			const tempData = data.val();
 			setUserData(tempData);
 			console.log(userData);
 		});
 	};
-	
+
 	const copyID = () => {
 		navigator.clipboard.writeText(userID);
 	};
 
 	// this function handles what is pushed up to firebase on submission of the dailyEntry Form
 	const handleSubmit = (e) => {
-    // prevent default browser refresh after form submission
-    e.preventDefault();
-	// temporary setting of the currentDay until counter is implemented
-	setCurrentDay("Day1");
+		// prevent default browser refresh after form submission
+		e.preventDefault();
+		// temporary setting of the currentDay until counter is implemented
+		setCurrentDay("Day1");
 
-	const dbPacked = {
-		[inputItem]: inputPrice
-	}
-	// push dbPacked up to dbUserDaily
-	push(dbUserDaily, dbPacked);
+		const dbPacked = {
+			[inputItem]: inputPrice,
+		};
+		// push dbPacked up to dbUserDaily
+		push(dbUserDaily, dbPacked);
 
-    // after submission, replace the input with an empty string, as the content of the last submit has already been pushed to the database above
-	// e.target.reset();
-    }    
-
+		// after submission, replace the input with an empty string, as the content of the last submit has already been pushed to the database above
+		// e.target.reset();
+	};
 
 	// the handlePriceChange function handles the user's inputPrice as it is typed into the DailyEntry form
-  	const handlePriceChange = (e) => {
-    // this tells react to update the state of the App component to include whatever is currently the value of the input of the form
-    setInputPrice(e.target.value);
-  	}
+	const handlePriceChange = (e) => {
+		// this tells react to update the state of the App component to include whatever is currently the value of the input of the form
+		setInputPrice(e.target.value);
+	};
 
 	// the handleItemChange function handles the user's inputItem as it is typed into the DailyEntry form
 	const handleItemChange = (e) => {
-    // this tells react to update the state of the App component to include whatever is currently the value of the input of the form
-    setInputItem(e.target.value);
-  	}
+		// this tells react to update the state of the App component to include whatever is currently the value of the input of the form
+		setInputItem(e.target.value);
+	};
 
 	// declare counter, set it to 0 to start
-	let counter = 0; 
+	let counter = 0;
 
 	// this function adds 1 to counter each time the arrow is clicked, and sends it up to firebase
 	const countUp = () => {
 		counter++;
 		const counterPacked = {
-			counter: counter
-		}
-		update(dbLiveData, counterPacked)
+			counter: counter,
+		};
+		update(dbLiveData, counterPacked);
 		liveBudget();
-	}
+	};
 
-	
 	const liveBudget = () => {
-		console.log((userData.initData.totalIncome / (userData.initData.daysNum - counter)).toFixed(2)) 
-	}
+		console.log((userData.initData.totalIncome / (userData.initData.daysNum - counter)).toFixed(2));
+	};
 
 	// JSX
 	return (
@@ -197,9 +159,7 @@ function App() {
 								<LiveBudget />
 							</section>
 							<section className="arrowButton">
-								<Arrow 
-								countUp={countUp}
-								/>
+								<Arrow countUp={countUp} />
 							</section>
 							<section className="expensesForm">
 								{/* expensesForm Component */}
@@ -221,9 +181,8 @@ function App() {
 							<SearchBar setUserID={setUserID} searchBarOnSubmit={searchBarOnSubmit} />
 						</>
 					)}
-										{/* Logo Component */}
+					{/* Logo Component */}
 					<Logo />
-
 				</main>
 				<footer>{/* Footer Component */}</footer>
 			</div>
