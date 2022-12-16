@@ -153,8 +153,6 @@ function App() {
 		<div className="App">
 			<div className="wrapper">
 				<header>
-					{/* Logo Component */}
-					<Logo />
 					{/* Nav Bar Component */}
 					<NavBar />
 				</header>
@@ -194,6 +192,8 @@ function App() {
 							<SearchBar setUserID={setUserID} searchBarOnSubmit={searchBarOnSubmit} />
 						</>
 					)}
+										{/* Logo Component */}
+					<Logo />
 
 				</main>
 				<footer>{/* Footer Component */}</footer>

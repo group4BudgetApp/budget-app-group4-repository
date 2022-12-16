@@ -37,8 +37,8 @@ const DailyEntry = ({inputPrice, inputItem, handleSubmit, handleItemChange, hand
 				<ul>
 					{/* map through the data to display in li items */}
 					<li>
-						<p>Bananassssssssss</p>
-						<p>$1000000000000000</p>
+						<p></p>
+						<p></p>
 					</li>
 				</ul>
 			</div>
