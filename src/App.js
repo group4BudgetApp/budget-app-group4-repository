@@ -65,6 +65,7 @@ function App() {
 
 		const dbTemp = ref(database, `/${pushEvent._path.pieces_[0]}/liveData`);
 
+
 		// push a duplicate of the totalIncome to firebase
 		const balance = {userBalance: userBudgetData.totalIncome};
 		console.log(userBudgetData.totalIncome)
@@ -135,6 +136,7 @@ function App() {
 		liveBudget();
 	}
 
+	
 	const liveBudget = () => {
 		console.log((userData.initData.totalIncome / (userData.initData.daysNum - counter)).toFixed(2)) 
 	}
