@@ -133,7 +133,7 @@ function App() {
 	const liveBudget = () => {
 		console.log((userData.initData.totalIncome / (userData.initData.daysNum - currentDay)).toFixed(2));
 	};
-
+	console.log(userData);
 	// JSX
 	return (
 		<div className="App">
