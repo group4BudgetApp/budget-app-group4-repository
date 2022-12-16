@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Arrow = () => {
+const Arrow = ({countUp}) => {
     return (
-        <button>-----</button>
+        <button onClick={countUp}>➽</button>
     )
 }
 

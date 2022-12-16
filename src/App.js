@@ -2,7 +2,7 @@ import "./App.css";
 import firebase from "./firebase";
 import FormBudget from "./FormBudget";
 import {useState, useEffect} from "react";
-import {getDatabase, ref, onValue, push, remove, get} from "firebase/database";
+import {getDatabase, ref, onValue, push, remove, get, update, set} from "firebase/database";
 import Arrow from "./Arrow";
 import Logo from "./Logo";
 import NavBar from "./NavBar";
@@ -27,10 +27,13 @@ function App() {
 	const database = getDatabase(firebase);
 	// Firebase location: global scope of the database
 	const dbRef = ref(database);
-	// //Firebase location: inside the individual ID
+	// Firebase location: inside the individual ID
 	const dbUserInit = ref(database, `/${userID}`);
 	// Firebase location: to the individual days within the spending node
 	const dbUserDaily = ref(database, `/${userID}/spending/day`);
+	// Firebase location: to the liveData node
+	const dbLiveData = ref(database, `/${userID}/liveData`);
+	
 
 	// tracks the changes within the FormBudget and stores the changes within a state
 	const formBudgetOnChange = (e) => {
@@ -52,12 +55,21 @@ function App() {
 		const tempObj = {initData: userBudgetData};
 		// we are creating an event object of the push to firebase
 		const pushEvent = push(dbRef, tempObj);
+
 		// by accessing the event object of the push, we are able to retrieve the firebase key, and then store it inside a state which we can refer to later
 
 		console.log(pushEvent);
 
 		setUserID(pushEvent._path.pieces_[0]);
 
+		const dbTemp = ref(database, `/${pushEvent._path.pieces_[0]}/liveData`);
+
+
+		// push a duplicate of the totalIncome to firebase
+		const balance = {userBalance: userBudgetData.totalIncome};
+		console.log(userBudgetData.totalIncome)
+		update(dbTemp, balance);
+		
 		e.target.reset();
 	};
 
@@ -119,20 +131,17 @@ function App() {
 	const handleSubmit = (e) => {
     // prevent default browser refresh after form submission
     e.preventDefault();
-    // create a database variable containing the imported firebase config
-    const database = getDatabase(firebase);
 	// temporary setting of the currentDay until counter is implemented
 	setCurrentDay("Day1");
-	// this variable references the database for the item
-	const dbItem = ref(database, `${currentDay}/${item}`)
-	// this variable references the database for the price
-	const dbPrice = ref(database, `${currentDay}/${price}`)
-    // push the userInput state (with its bound value property) to the database
-    push(dbItem, inputItem)    
-	push(dbPrice, inputPrice)  
+
+	const dbPacked = {
+		[inputItem]: inputPrice
+	}
+	// push dbPacked up to dbUserDaily
+	push(dbUserDaily, dbPacked);
+
     // after submission, replace the input with an empty string, as the content of the last submit has already been pushed to the database above
-    setInputPrice('');
-	setInputItem('');
+	// e.target.reset();
     }    
 
 
@@ -147,6 +156,24 @@ function App() {
     // this tells react to update the state of the App component to include whatever is currently the value of the input of the form
     setInputItem(e.target.value);
   	}
+
+	// declare counter, set it to 0 to start
+	let counter = 0; 
+
+	// this function adds 1 to counter each time the arrow is clicked, and sends it up to firebase
+	const countUp = () => {
+		counter++;
+		const counterPacked = {
+			counter: counter
+		}
+		update(dbLiveData, counterPacked)
+		liveBudget();
+	}
+
+	
+	const liveBudget = () => {
+		console.log((userData.initData.totalIncome / (userData.initData.daysNum - counter)).toFixed(2)) 
+	}
 
 	// JSX
 	return (
@@ -172,7 +199,9 @@ function App() {
 								<LiveBudget />
 							</section>
 							<section className="arrowButton">
-								<Arrow />
+								<Arrow 
+								countUp={countUp}
+								/>
 							</section>
 							<section className="expensesForm">
 								{/* expensesForm Component */}
