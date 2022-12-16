@@ -6,6 +6,10 @@ body {
   background-size: cover;
 }
 
+h1 {
+  text-shadow: 2px 4px 6px #DBF0EF;
+}
+
 li {
   list-style: none;
 }
@@ -22,6 +26,11 @@ li {
   top: 200px;
   opacity: 70%;
   border-radius: 100px;
+}
+
+.formBudget {
+  display: flex;
+  flex-direction: column;
 }
 
 
