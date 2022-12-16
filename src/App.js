@@ -34,6 +34,7 @@ function App() {
 	const dbUserDaily = ref(database, `/${userID}/spending/day`);
 	// Firebase location: to the liveData node
 	const dbLiveData = ref(database, `/${userID}/liveData`);
+	
 
 	// tracks the changes within the FormBudget and stores the changes within a state
 	const formBudgetOnChange = (e) => {
@@ -55,12 +56,20 @@ function App() {
 		const tempObj = {initData: userBudgetData};
 		// we are creating an event object of the push to firebase
 		const pushEvent = push(dbRef, tempObj);
+
 		// by accessing the event object of the push, we are able to retrieve the firebase key, and then store it inside a state which we can refer to later
 
 		console.log(pushEvent);
 
 		setUserID(pushEvent._path.pieces_[0]);
 
+		const dbTemp = ref(database, `/${pushEvent._path.pieces_[0]}/liveData`);
+
+		// push a duplicate of the totalIncome to firebase
+		const balance = {userBalance: userBudgetData.totalIncome};
+		console.log(userBudgetData.totalIncome)
+		update(dbTemp, balance);
+		
 		e.target.reset();
 	};
 
@@ -113,16 +122,24 @@ function App() {
     setInputItem(e.target.value);
   	}
 
+	// declare counter, set it to 0 to start
 	let counter = 0; 
 
+	// this function adds 1 to counter each time the arrow is clicked, and sends it up to firebase
 	const countUp = () => {
 		counter++;
 		const counterPacked = {
 			counter: counter
 		}
-		set(dbLiveData, counterPacked)
+		update(dbLiveData, counterPacked)
+		liveBudget();
 	}
-	console.log(counter);
+
+	const liveBudget = () => {
+		console.log((userData.initData.totalIncome / (userData.initData.daysNum - counter)).toFixed(2)) 
+	}
+
+
 
 	// JSX
 	return (
