@@ -1,8 +1,11 @@
 import React from 'react';
+import buddyLogo from './buddyLogo.png'
 
  const Logo = () => {
     return (
-        <img src="" alt=""></img>
+        <div>
+        {/* <img src={buddyLogo} alt='' className='buddyLogo'></img> */}
+        </div>
     )
  }
 
