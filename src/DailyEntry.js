@@ -1,4 +1,4 @@
-const DailyEntry = ({inputPrice, inputItem, handleSubmit, handleItemChange, handlePriceChange}) => {
+const DailyEntry = ({inputPrice, inputItem, handleSubmit, handleItemChange, handlePriceChange, currentDay}) => {
 	return (
 		// flex-direction: row
 		<section className="dailyEntry">
@@ -8,7 +8,7 @@ const DailyEntry = ({inputPrice, inputItem, handleSubmit, handleItemChange, hand
 				<div className="flexContainer">
 					{/* Change <p></p> to another tag if needed */}
 					{/* Pass an argument to keep the number of days updated */}
-					<p>Day 1</p>
+					<p>Day {currentDay}</p>
 					{/* Pass an argument to to keep the amount updated */}
 					<p>$0</p>
 				</div>
@@ -16,18 +16,29 @@ const DailyEntry = ({inputPrice, inputItem, handleSubmit, handleItemChange, hand
 				<form action="">
 					{/* Input Item */}
 					<label htmlFor="entryName">Input Item</label>
-					<input type="text" maxLength={20} minLength={1} id="entryName" name="entryName" 
-					// binding the inputItem state to the value attribute
-                	value={inputItem}
-					onChange={handleItemChange}
+					<input
+						type="text"
+						maxLength={20}
+						minLength={1}
+						id="entryName"
+						name="entryName"
+						// binding the inputItem state to the value attribute
+						value={inputItem}
+						onChange={handleItemChange}
 					/>
 
 					{/* Input Price */}
 					<label htmlFor="entryName">Input Price</label>
-					<input type="number" max={999999999999} min={0} step={0.01} id="entryCost" name="entryCost" 
-					// binding the inputPrice state to the value attribute
-                	value={inputPrice}
-					onChange={handlePriceChange}	
+					<input
+						type="number"
+						max={999999999999}
+						min={0}
+						step={0.01}
+						id="entryCost"
+						name="entryCost"
+						// binding the inputPrice state to the value attribute
+						value={inputPrice}
+						onChange={handlePriceChange}
 					/>
 					<button onClick={handleSubmit}>Submit</button>
 				</form>
@@ -47,4 +58,3 @@ const DailyEntry = ({inputPrice, inputItem, handleSubmit, handleItemChange, hand
 };
 
 export default DailyEntry;
-
