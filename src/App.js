@@ -2,7 +2,7 @@ import "./App.css";
 import firebase from "./firebase";
 import FormBudget from "./FormBudget";
 import {useState, useEffect} from "react";
-import {getDatabase, ref, onValue, push, remove, get} from "firebase/database";
+import {getDatabase, ref, onValue, push, remove, get, update, set} from "firebase/database";
 import Arrow from "./Arrow";
 import Logo from "./Logo";
 import NavBar from "./NavBar";
@@ -28,10 +28,12 @@ function App() {
 	const database = getDatabase(firebase);
 	// Firebase location: global scope of the database
 	const dbRef = ref(database);
-	// //Firebase location: inside the individual ID
+	// Firebase location: inside the individual ID
 	const dbUserInit = ref(database, `/${userID}`);
 	// Firebase location: to the individual days within the spending node
 	const dbUserDaily = ref(database, `/${userID}/spending/day`);
+	// Firebase location: to the liveData node
+	const dbLiveData = ref(database, `/${userID}/liveData`);
 
 	// tracks the changes within the FormBudget and stores the changes within a state
 	const formBudgetOnChange = (e) => {
@@ -111,6 +113,16 @@ function App() {
     setInputItem(e.target.value);
   	}
 
+	let counter = 0; 
+
+	const countUp = () => {
+		counter++;
+		const counterPacked = {
+			counter: counter
+		}
+		set(dbLiveData, counterPacked)
+	}
+	console.log(counter);
 
 	// JSX
 	return (
@@ -136,7 +148,9 @@ function App() {
 								<LiveBudget />
 							</section>
 							<section className="arrowButton">
-								<Arrow />
+								<Arrow 
+								countUp={countUp}
+								/>
 							</section>
 							<section className="expensesForm">
 								{/* expensesForm Component */}
