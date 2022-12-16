@@ -33,7 +33,7 @@ function App() {
 	const dbUserDaily = ref(database, `/${userID}/spending/day`);
 	// Firebase location: to the liveData node
 	const dbLiveData = ref(database, `/${userID}/liveData`);
-
+	
 	// tracks the changes within the FormBudget and stores the changes within a state
 	const formBudgetOnChange = (e) => {
 		// storing the changes within a variable so that we could pair it to a property inside an object
@@ -67,7 +67,7 @@ function App() {
 		const balance = {userBalance: userBudgetData.totalIncome};
 		console.log(userBudgetData.totalIncome);
 		update(dbTemp, balance);
-
+		
 		e.target.reset();
 	};
 
@@ -79,49 +79,49 @@ function App() {
 
 	// function responsible for retrieving user data from firebase based on the userID state
 	const getUserData = () => {
-		// grabs user initialization data to get the app started
+   // grabs user initialization data to get the app started
 		get(dbUserInit).then((data) => {
 			const tempData = data.val();
 			setUserData(tempData);
 			console.log(userData);
 		});
 	};
-
+	
 	const copyID = () => {
 		navigator.clipboard.writeText(userID);
 	};
 
 	// this function handles what is pushed up to firebase on submission of the dailyEntry Form
 	const handleSubmit = (e) => {
-		// prevent default browser refresh after form submission
-		e.preventDefault();
-		// temporary setting of the currentDay until counter is implemented
-		setCurrentDay("Day1");
+    // prevent default browser refresh after form submission
+    e.preventDefault();
+	// temporary setting of the currentDay until counter is implemented
+	setCurrentDay("Day1");
 
-		const dbPacked = {
+	const dbPacked = {
 			[inputItem]: inputPrice,
 		};
-		// push dbPacked up to dbUserDaily
-		push(dbUserDaily, dbPacked);
+	// push dbPacked up to dbUserDaily
+	push(dbUserDaily, dbPacked);
 
-		// after submission, replace the input with an empty string, as the content of the last submit has already been pushed to the database above
-		// e.target.reset();
+    // after submission, replace the input with an empty string, as the content of the last submit has already been pushed to the database above
+	// e.target.reset();
 	};
 
 	// the handlePriceChange function handles the user's inputPrice as it is typed into the DailyEntry form
-	const handlePriceChange = (e) => {
-		// this tells react to update the state of the App component to include whatever is currently the value of the input of the form
-		setInputPrice(e.target.value);
+  	const handlePriceChange = (e) => {
+    // this tells react to update the state of the App component to include whatever is currently the value of the input of the form
+    setInputPrice(e.target.value);
 	};
 
 	// the handleItemChange function handles the user's inputItem as it is typed into the DailyEntry form
 	const handleItemChange = (e) => {
-		// this tells react to update the state of the App component to include whatever is currently the value of the input of the form
-		setInputItem(e.target.value);
+    // this tells react to update the state of the App component to include whatever is currently the value of the input of the form
+    setInputItem(e.target.value);
 	};
 
 	// declare counter, set it to 0 to start
-	let counter = 0;
+	let counter = 0; 
 
 	// this function adds 1 to counter each time the arrow is clicked, and sends it up to firebase
 	const countUp = () => {
@@ -132,7 +132,7 @@ function App() {
 		update(dbLiveData, counterPacked);
 		liveBudget();
 	};
-
+	
 	const liveBudget = () => {
 		console.log((userData.initData.totalIncome / (userData.initData.daysNum - counter)).toFixed(2));
 	};
@@ -181,7 +181,7 @@ function App() {
 							<SearchBar setUserID={setUserID} searchBarOnSubmit={searchBarOnSubmit} />
 						</>
 					)}
-					{/* Logo Component */}
+										{/* Logo Component */}
 					<Logo />
 				</main>
 				<footer>{/* Footer Component */}</footer>
