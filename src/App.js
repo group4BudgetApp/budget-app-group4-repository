@@ -144,6 +144,8 @@ function App() {
 				<header>
 					{/* Nav Bar Component */}
 					<NavBar />
+					<h1>Budget Buddy!</h1>
+					<p>The simple, easy way to manage your money</p>
 				</header>
 				<main>
 					{/* ternary operator used to display user sign-up/login  */}
