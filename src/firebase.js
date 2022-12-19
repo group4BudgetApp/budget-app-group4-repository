@@ -7,6 +7,7 @@ import {initializeApp} from "firebase/app";
 const firebaseConfig = {
 	apiKey: "AIzaSyB_msuY16IMAzdem3VWUoKnhuYRhZUOHa4",
 	authDomain: "budgetapp-f5759.firebaseapp.com",
+	databaseURL: "https://budgetapp-f5759-default-rtdb.firebaseio.com",
 	projectId: "budgetapp-f5759",
 	storageBucket: "budgetapp-f5759.appspot.com",
 	messagingSenderId: "699291830100",
