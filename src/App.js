@@ -1,11 +1,9 @@
 import "./App.css";
 import firebase from "./firebase";
-import {get, getDatabase, push, ref} from "firebase/database";
+import {get, getDatabase, ref} from "firebase/database";
 import {useEffect, useState} from "react";
-import {Link, Routes, Route} from "react-router-dom";
+import {Routes, Route} from "react-router-dom";
 import SignUp from "./SignUpForm";
-import SpendingForm from "./SpendingForm";
-import SpendingDisplay from "./SpendingDisplay";
 import LoginForm from "./LoginForm";
 import SplashLogo from "./SplashLogo";
 import Home from "./Home";
@@ -14,6 +12,7 @@ import SpendingInterface from "./SpendingInterface";
 function App() {
 	// userID will be stored in this state
 	const [userID, setUserID] = useState("");
+	// when the signUp data retrieved
 	const [daysUntil, setDaysUntil] = useState(0);
 	const [daysSince, setDaysSince] = useState(0);
 	// User spending data from firebase will be stored in this state
@@ -66,7 +65,7 @@ function App() {
 				console.log("does not exists");
 			}
 		});
-	}, [daysSince]);
+	}, [daysSince, userBalance]);
 
 	return (
 		<div className="wrapper">

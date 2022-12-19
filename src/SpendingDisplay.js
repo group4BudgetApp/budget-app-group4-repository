@@ -1,5 +1,6 @@
 const SpendingDisplay = ({userSpendingData}) => {
 	// Taking the object of userSpendingData, then for each key value pair, store them inside an array, then store the entire data set into an array
+
 	const dataArray = Object.entries(userSpendingData);
 	return (
 		<div className="spendingContainerDisplay">
