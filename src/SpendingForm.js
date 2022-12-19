@@ -20,15 +20,16 @@ const SpendingForm = ({dbSpending, daysSince, userBalance, setUserBalance, dbBal
 	// Handles the submission behavior of the SpendingForm
 	const spendingOnSubmit = (e) => {
 		e.preventDefault();
-
+		// Subtracts the userBalance by the expense cost
 		const tempCalc = userBalance - newSpendingData.expenseCost;
+		// Update the state with tempCalc
 		setUserBalance(tempCalc);
-		console.log(tempCalc);
+		// Set tempCalc into firebase. Set because it will overwrite the previous entry (Updating the balance)
 		set(dbBalance, tempCalc);
+		// Push the key value pair of the expense to the spending node. Push to get a new firebase key.
 		push(dbSpending, {[newSpendingData.expenseName]: parseInt(newSpendingData.expenseCost)});
+		// Resets the form
 		e.target.reset();
-
-		// Calc the live balance
 	};
 
 	return (
