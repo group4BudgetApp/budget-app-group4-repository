@@ -14,14 +14,14 @@ import SpendingInterface from "./SpendingInterface";
 function App() {
 	// userID will be stored in this state
 	const [userID, setUserID] = useState("");
-	// When the sign up data has been retrieved from firebase, a calculation for the number of days until the next pay  and also the days since last pay
 	const [daysUntil, setDaysUntil] = useState(0);
 	const [daysSince, setDaysSince] = useState(0);
 	// User spending data from firebase will be stored in this state
 	const [userSpendingData, setUserSpendingData] = useState({});
+
 	// Form input onChange for the signUp data will be stored in this state
 	const [signUpData, setSignUpData] = useState({});
-	// state will store
+
 	const [userBalance, setUserBalance] = useState(0);
 	// const [currentDate, setCurrentDate] = ()
 	const database = getDatabase(firebase);
