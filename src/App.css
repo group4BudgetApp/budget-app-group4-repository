@@ -1,27 +1,217 @@
-@import url('https://fonts.googleapis.com/css2?family=Maitree:wght@400;700&display=swap');
+/* Setup snippet */
+html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,footer,header,nav,section{display:block}h1{font-size:2em;margin:.67em 0}figcaption,figure,main{display:block}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}audio,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font-family:sans-serif;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,html [type=button],[type=reset],[type=submit]{-webkit-appearance:button}button::-moz-focus-inner,[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details,menu{display:block}summary{display:list-item}canvas{display:inline-block}template{display:none}[hidden]{display:none}
 
-body {
-  font-family: 'Maitree', serif;
-  background-image: url(../assets/background.jpg);
-  background-size: cover;
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
+/* Setup Snippet End */
+
+/* Colors variable start*/
+:root {
+  --card: #DBF0EF;
+  --contrast: #97DAE8;
+  --highlight: #C0C8F0;
+  --text: #04080F;
+  --outline: #aaa;
+}
+/* Colours variable end */
+
+/* General Styling */
+html {
+  font-size: 62.5%;
 }
 
-li {
+ul, li {
+  margin: 0;
+  padding: 0;
   list-style: none;
 }
 
-.App {
+.wrapper {
+width: 90%;
+max-width: 1400px;
+margin: 0 auto;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+h1,h2,h3,h4,h5,h6,p,a,li, input, button, Link {
+  font-size: 1.6rem;
+  font-family: 'Maitree',
+    serif;
+  color:var(--text);
+  padding: 0;
+  margin:0;
+}
+
+a, Link, a:visited, Link:visited {
+  color: black;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+input {
+  height: 48px;
+  width: 256px;
+padding: 8px;
+}
+
+button {
+  cursor: pointer;
+
+}
+
+/* Button styling start*/
+
+.rectangleButton {
+  border: none;
+  background-color: var(--card);
+  height: 48px;
+  width: 256px;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  border-radius: 4px;
+  transition: background-color 0.1s;
+}
+
+.rectangleButton:hover,
+.rectangleButton:focus {
+  background-color: var(--contrast);
+}
+
+/* Button styling end */
+
+/* Shadow styling start */
+.shadow {
+-webkit-box-shadow: 0px 4px 8px -8px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 4px 8px -8px rgba(0, 0, 0, 0.75);
+  transition: box-shadow 0.1s;
+}
+.shadow:hover, .shadow:focus {
+  -webkit-box-shadow: 0px 8px 8px -8px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 8px 8px -8px rgba(0, 0, 0, 0.75);
+}
+
+.shadowStatic {
+-webkit-box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
+}
+
+/* Shadow styling end */
+/* General Styling End */
+
+
+.welcomeContainer {
+  margin-top: 10vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+border: var(--outline) 1px solid;
+width: 360px;
+padding: 36px 0 ;
+border-radius: 4px;
+}
+
+.welcomeContainer .rectangleButton {
+  margin-bottom: 24px
+}
+
+.welcomeContainer .imgContainer {
+margin-bottom: 48px;
+}
+
+.welcomeContainer img {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;  border-radius: 50%;
+}
+
+.welcomeContainer h2 {
+  font-size: 3.2rem;
+  margin-bottom: 48px;
+}
+.welcomeContainer .message {
+  text-align: center;
+  margin-bottom: 40px;
+  line-height: 32px;
+}
+
+.welcomeContainer .userIDStyle {
+  /* font-weight: 700; */
+  font-size: 2rem;
+}
+
+.welcomeContainer form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.welcomeContainer input {
+  margin-bottom: 24px;
+}
+
+.spendingContainer {
+  margin-top: 10vh;
+border: var(--outline) 1px solid;
+padding: 24px;
+display: flex;
+flex-direction: column;
+gap: 24px;
+align-items: center;
+}
+
+.spendingContainer h2 {
+  font-size: 2.4rem;
+  margin: 8px 0;
+}
+
+.spendingFormContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.spendingFormContainer input {
+  margin-bottom: 24px;
+}
+
+.spendingFormContainer h2 {
+  margin-bottom: 16px;
+  font-size: 2.4rem;
   text-align: center;
 }
 
-.buddyLogo {
-  width: 20%;
-  height: 30vh;
-  position: relative;
-  left: 400px;
-  top: 200px;
-  opacity: 70%;
-  border-radius: 100px;
+.spendingContainerDisplay {
+  padding: 48px;
+  width: 600px;
+  height: 500px;
+border: var(--outline) 1px solid;
+display: flex;
+
+gap: 200px;
+
 }
 
+.interactiveContainer {
+  display: flex;
+  gap: 32px;
+    align-items: center;
+}
+
+.userBalanceContainer {
+  display: flex;
+  gap: 64px;
+}
+
+.listHeader,
+.dayCount {
+  font-weight: 400;
+}
 
