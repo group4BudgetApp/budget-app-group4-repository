@@ -13,7 +13,7 @@ const SpendingDisplay = ({userSpendingData, userID, daysSince, userBalance, setU
  
    remove(dbSpendingEntry)
  
-   const tempCalc = userBalance + e.target.value
+   const tempCalc = userBalance + parseInt(e.target.value)
    setUserBalance(tempCalc)
    console.log(e.target.id)
 }
