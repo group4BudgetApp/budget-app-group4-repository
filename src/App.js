@@ -68,7 +68,7 @@ function App() {
 				setUserSpendingData(snapshot.val());
 			} else {
 				setUserSpendingData({});
-				console.log("does not exists");
+				// possible error message here
 			}
 		});
 	}, [daysSince, userBalance]);

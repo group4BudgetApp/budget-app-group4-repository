@@ -1,5 +1,4 @@
 import {push} from "firebase/database";
-import {useState} from "react";
 import {Link} from "react-router-dom";
 
 const SignUp = ({setUserID, dbSignUp, setSignUpData, signUpData, userID}) => {
@@ -13,7 +12,6 @@ const SignUp = ({setUserID, dbSignUp, setSignUpData, signUpData, userID}) => {
 			[e.target.name]: tempVal,
 			signUpTime: currentTime,
 		});
-		console.log(signUpData);
 	};
 
 	// Handles the onSubmit function of the signUp form. Pushes the data to firebase and calculates the number of days left until the next pay.
