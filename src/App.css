@@ -8,10 +8,10 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
 
 /* Colors variable start*/
 :root {
-  --card: #DBF0EF;
+  --card: #C0C8F0;
   --contrast: #97DAE8;
-  --highlight: #C0C8F0;
-  --text: #04080F;
+  --highlight: #DBF0EF;
+  --text: black;
   --outline: #aaa;
 }
 /* Colours variable end */
@@ -36,17 +36,17 @@ flex-direction: column;
 align-items: center;
 }
 
-h1,h2,h3,h4,h5,h6,p,a,li, input, button, Link {
+body {
+  background-color: var(--card);
   font-size: 1.6rem;
-  font-family: 'Maitree',
-    serif;
+  font-family: 'Maitree', serif;
   color:var(--text);
   padding: 0;
   margin:0;
 }
 
 a, Link, a:visited, Link:visited {
-  color: black;
+  color: var(--text);
   text-decoration: none;
 }
 
@@ -58,7 +58,7 @@ img {
 input {
   height: 48px;
   width: 256px;
-padding: 8px;
+  padding: 8px;
 }
 
 button {
@@ -70,7 +70,7 @@ button {
 
 .rectangleButton {
   border: none;
-  background-color: var(--card);
+  background-color: var(--highlight);
   height: 48px;
   width: 256px;
   display: flex;
@@ -104,18 +104,25 @@ button {
 }
 
 /* Shadow styling end */
+
+.welcomeContainer, .spendingContainer {
+  background-color: white;
+  margin-top: 10vh;
+  display: flex;
+  border-radius: 10px;
+}
+
+
 /* General Styling End */
 
 
 .welcomeContainer {
-  margin-top: 10vh;
-  display: flex;
   align-items: center;
   flex-direction: column;
-border: var(--outline) 1px solid;
-width: 360px;
-padding: 36px 0 ;
-border-radius: 4px;
+  /* border: var(--outline) 1px solid; */
+  width: 360px;
+  padding: 36px 0 ;
+
 }
 
 .welcomeContainer .rectangleButton {
@@ -159,13 +166,10 @@ margin-bottom: 48px;
 }
 
 .spendingContainer {
-  margin-top: 10vh;
-border: var(--outline) 1px solid;
-padding: 24px;
-display: flex;
-flex-direction: column;
-gap: 24px;
-align-items: center;
+  padding: 24px;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
 }
 
 .spendingContainer h2 {
@@ -192,8 +196,8 @@ align-items: center;
   padding: 48px;
   width: 600px;
   height: 500px;
-border: var(--outline) 1px solid;
-display: flex;
+  border: var(--outline) 1px solid;
+  display: flex;
 
 gap: 200px;
 

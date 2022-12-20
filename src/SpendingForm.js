@@ -1,7 +1,7 @@
 import {push, set} from "firebase/database";
 import {useState} from "react";
- 
-const SpendingForm = ({dbSpending, daysSince, userBalance, setUserBalance, dbBalance, daysUntil}) => {
+
+const SpendingForm = ({dbSpending, setDaysSince, daysSince, userBalance, setUserBalance, dbBalance, daysUntil, setDaysUntil}) => {
    // Form input onChange for the spending data will be stored in this state
    const [newSpendingData, setNewSpendingData] = useState({});
    // Tracks changes in the SpendingForm
@@ -32,6 +32,24 @@ const SpendingForm = ({dbSpending, daysSince, userBalance, setUserBalance, dbBal
        e.target.reset();
    };
  
+ 	const nextDay = () => {
+		if (daysUntil === 0) {
+			return
+		} else {
+			setDaysSince(daysSince + 1)
+			setDaysUntil(daysUntil - 1)
+		}
+	}
+
+	const prevDay = () => {
+		if (daysSince === 0) {
+			return
+		} else {
+			setDaysSince(daysSince - 1)
+			setDaysUntil(daysUntil + 1)
+		}
+	}
+ 
    return (
        <>
            <form onSubmit={spendingOnSubmit} className="spendingFormContainer">
@@ -43,6 +61,8 @@ const SpendingForm = ({dbSpending, daysSince, userBalance, setUserBalance, dbBal
                    Submit Expense
                </button>
            </form>
+           <button onClick={nextDay} className="nextDayButton">Next</button>
+				   <button onClick={prevDay} className="nextDayButton">Prev</button>
        </>
    );
 };

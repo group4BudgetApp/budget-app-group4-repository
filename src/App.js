@@ -95,6 +95,8 @@ function App() {
                                setUserBalance={setUserBalance}
                                dbBalance={dbBalance}
                                daysUntil={daysUntil}
+                               setDaysSince={setDaysSince}
+								               setDaysUntil={setDaysUntil}
                            />
                        </>
                    }
