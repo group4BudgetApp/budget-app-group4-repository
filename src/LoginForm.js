@@ -50,7 +50,7 @@ const LoginForm = ({setUserID, setSignUpData, userID, setUserBalance, userBalanc
 			<section className="welcomeContainer shadowStatic">
 				<h2>Log In</h2>
 				<form onSubmit={loginOnSubmit}>
-					<input type="text" placeholder="Login with your ID" onChange={loginOnChange} />
+					<input type="text" placeholder="Login with your ID" onChange={loginOnChange} maxLength="20" minLength={20} />
 					<button type="submit" className="rectangleButton">
 						Next
 					</button>
