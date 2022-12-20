@@ -35,7 +35,7 @@ const SpendingForm = ({dbSpending, daysSince, userBalance, setUserBalance, dbBal
    return (
        <>
            <form onSubmit={spendingOnSubmit} className="spendingFormContainer">
-               <h2 className="dayCount">Day: {daysSince}</h2>
+               <h2 className="dayCount">Current Day: {daysSince}</h2>
                <h2 className="dayCount">Days until next pay: {daysUntil}</h2>
                <input type="text" id="expenseName" name="expenseName" placeholder="Expense Name" onChange={spendingOnChange} />
                <input type="number" id="expenseCost" name="expenseCost" placeholder="Expense Cost" onChange={spendingOnChange} />

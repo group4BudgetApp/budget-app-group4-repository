@@ -63,7 +63,6 @@ padding: 8px;
 
 button {
   cursor: pointer;
-
 }
 
 /* Button styling start*/
@@ -106,6 +105,10 @@ button {
 /* Shadow styling end */
 /* General Styling End */
 
+body {
+  background-image: url(../assets/budgetBuddyLogo.png);
+  background-size: cover;
+}
 
 .welcomeContainer {
   margin-top: 10vh;
@@ -159,7 +162,7 @@ margin-bottom: 48px;
 }
 
 .spendingContainer {
-  margin-top: 10vh;
+margin: 50px;
 border: var(--outline) 1px solid;
 padding: 24px;
 display: flex;
@@ -189,9 +192,10 @@ align-items: center;
 }
 
 .spendingContainerDisplay {
-  padding: 48px;
-  width: 600px;
-  height: 500px;
+  margin: 50px;
+  padding: 30px;
+  width: 700px;
+  height: 300px;
 border: var(--outline) 1px solid;
 display: flex;
 
@@ -214,4 +218,7 @@ gap: 200px;
 .dayCount {
   font-weight: 400;
 }
+
+
+
 
