@@ -1,11 +1,12 @@
 import {get, ref, getDatabase} from "firebase/database";
 import firebase from "./firebase";
-import {Link, Navigate, redirect, useNavigate} from "react-router-dom";
+import {Navigate} from "react-router-dom";
 
 // Component responsible for receiving the userID to retrieve the user's profile information
 const LoginForm = ({setUserID, setSignUpData, userID, setUserBalance, userBalance, dbBalance}) => {
 	// referencing the user's signUpData
 	const dbInitData = ref(getDatabase(firebase), `/userProfiles/${userID}/signUpData`);
+
 
 	// Tracks the changes inside the input form
 	const loginOnChange = (e) => {
@@ -19,9 +20,8 @@ const LoginForm = ({setUserID, setSignUpData, userID, setUserBalance, userBalanc
 			if (snapshot.exists()) {
 				// Setting the signUpData into a state
 				setSignUpData(snapshot.val());
-				console.log(snapshot.val());
 			} else {
-				console.log("Sign up data could not be found");
+				alert("Sign up data could not be found");
 			}
 		});
 	};
@@ -31,7 +31,6 @@ const LoginForm = ({setUserID, setSignUpData, userID, setUserBalance, userBalanc
 		get(dbBalance).then((snapshot) => {
 			if (snapshot.exists()) {
 				setUserBalance(snapshot.val());
-				console.log(snapshot.val());
 			} else {
 				console.log(snapshot.val());
 			}
@@ -50,7 +49,7 @@ const LoginForm = ({setUserID, setSignUpData, userID, setUserBalance, userBalanc
 			<section className="welcomeContainer shadowStatic">
 				<h2>Log In</h2>
 				<form onSubmit={loginOnSubmit}>
-					<input type="text" placeholder="Login with your ID" onChange={loginOnChange} />
+					<input type="text" placeholder="Login with your ID" onChange={loginOnChange} maxLength="20" minLength={20} onKeyDown={ (evt) => evt.key === '.' && evt.preventDefault() }/>
 					<button type="submit" className="rectangleButton">
 						Next
 					</button>
