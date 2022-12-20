@@ -52,6 +52,7 @@ function App() {
 		// Convert date string to a date object
 		const timeCompare = new Date(signUpData.signUpTime);
 		setDaysSince(Math.floor(Math.abs(timeCompare - timeNow) * toDay));
+		console.log(daysSince)
 	};
 
 	// a useEffect which runs the date calculations when the page loads and when there is an update to signUpDate state comming from firebase
@@ -68,13 +69,16 @@ function App() {
 				setUserSpendingData(snapshot.val());
 			} else {
 				setUserSpendingData({});
-				console.log("does not exists");
 			}
 		});
 	}, [daysSince, userBalance]);
 
+
+
 	return (
 		<div className="wrapper">
+			{/* <button onClick={nextDay}>next</button>
+			<button onClick={prevDay}>prev</button> */}
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/signup" element={<SignUp userID={userID} setUserID={setUserID} dbSignUp={dbSignUp} signUpData={signUpData} setSignUpData={setSignUpData} />} />
@@ -94,6 +98,8 @@ function App() {
 								setUserBalance={setUserBalance}
 								dbBalance={dbBalance}
 								daysUntil={daysUntil}
+								setDaysSince={setDaysSince}
+								setDaysUntil={setDaysUntil}
 							/>
 						</>
 					}

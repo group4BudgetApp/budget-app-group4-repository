@@ -2,7 +2,7 @@ import SpendingForm from "./SpendingForm";
 import SpendingDisplay from "./SpendingDisplay";
 import Balance from "./Balance";
 
-const SpendingInterface = ({getSpendingData, dbSpending, daysSince, userSpendingData, userBalance, setUserBalance, dbBalance, daysUntil}) => {
+const SpendingInterface = ({getSpendingData, dbSpending, daysSince, setDaysSince, userSpendingData, userBalance, setUserBalance, dbBalance, daysUntil, setDaysUntil}) => {
 	return (
 		<>
 			<section className="spendingContainer">
@@ -16,6 +16,8 @@ const SpendingInterface = ({getSpendingData, dbSpending, daysSince, userSpending
 						dbBalance={dbBalance}
 						userBalance={userBalance}
 						daysUntil={daysUntil}
+						setDaysSince={setDaysSince}
+						setDaysUntil={setDaysUntil}
 					/>
 					<SpendingDisplay daysSince={daysSince} userSpendingData={userSpendingData} userBalance={userBalance} />
 				</div>
