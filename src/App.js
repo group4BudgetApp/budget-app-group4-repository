@@ -76,7 +76,8 @@ function App() {
             }
         });
 
-    }, [daysSince, userBalance, dbSpending]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [daysSince, userBalance]);
 
     return (
         <div className="wrapper">
