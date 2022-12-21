@@ -1,5 +1,5 @@
-const Balance = ({userBalance, daysUntil}) => {
-	
+const Balance = ({ userBalance, daysUntil }) => {
+
 	return (
 		<div className="userBalanceContainer">
 			<h2>Live Balance: ${userBalance.toFixed(2)}</h2>
