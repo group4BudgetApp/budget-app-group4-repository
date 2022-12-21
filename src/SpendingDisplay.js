@@ -4,7 +4,7 @@ import firebase from './firebase';
 const SpendingDisplay = ({userSpendingData, userID, daysSince, userBalance, setUserBalance}) => {
    // Taking the object of userSpendingData, then for each key value pair, store them inside an array, then store the entire data set into an array
  
-   const testFunction = (e) => {
+   const deleteItem = (e) => {
    const database = getDatabase(firebase)
    const tempKey = (e.target.id)
  
@@ -46,12 +46,12 @@ const SpendingDisplay = ({userSpendingData, userID, daysSince, userBalance, setU
  
            <ul className="spendingListDisplay">
                <li>
-                   <h2 className="listHeader">Remove item</h2>
+                   <h2 className="listHeader">Remove</h2>
                </li>
                {/* Map through the array to display the information which we are looking to display */}
                {dataArray.map((index) => {
 				//item delete button
-                   return <button value={Object.values(index[1])} onClick={testFunction} id={index[0]} key={index[0]}>X</button>;
+                   return <li><button className="deleteButton" value={Object.values(index[1])} onClick={deleteItem} id={index[0]} key={index[0]}>❌</button></li>;
                })}
            </ul>
        </div>

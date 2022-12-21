@@ -5,7 +5,6 @@ import {useEffect, useState} from "react";
 import {Routes, Route} from "react-router-dom";
 import SignUp from "./SignUpForm";
 import LoginForm from "./LoginForm";
-import SplashLogo from "./SplashLogo";
 import Home from "./Home";
 import SpendingInterface from "./SpendingInterface";
  
@@ -75,7 +74,7 @@ function App() {
  
    return (
        <div className="wrapper">
-           <Routes>
+            <Routes>
                <Route path="/" element={<Home />} />
                <Route path="/signup" element={<SignUp userID={userID} setUserID={setUserID} dbSignUp={dbSignUp} signUpData={signUpData} setSignUpData={setSignUpData} />} />
                <Route
@@ -96,7 +95,7 @@ function App() {
                                dbBalance={dbBalance}
                                daysUntil={daysUntil}
                                setDaysSince={setDaysSince}
-								               setDaysUntil={setDaysUntil}
+							   setDaysUntil={setDaysUntil}
                            />
                        </>
                    }

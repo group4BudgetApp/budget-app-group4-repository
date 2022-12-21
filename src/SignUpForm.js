@@ -22,13 +22,18 @@ const SignUp = ({setUserID, dbSignUp, setSignUpData, signUpData, userID}) => {
 		e.target.reset();
 	};
 
+	// this allows this user to click on the unique ID and have it automatically copied to their clipboard
+	const copyId = () => {
+        navigator.clipboard.writeText(userID);
+    };  
+
 	return (
 		<section className="welcomeContainer shadowStatic">
 			{userID ? (
 				<>
-					<p className="message">Please use your profile id to login:</p>
+					<p className="message">Save this profile ID to login in the future. <br></br> Click below to copy.</p>
 					<p className="message">
-						<span className="userIDStyle">{userID}</span>
+						<span className="userIDStyle rectangleButton" onClick="copyId">{userID}</span>
 					</p>
 					<Link className="rectangleButton shadow" to="/login">
 						<p>Log In</p>
@@ -38,8 +43,11 @@ const SignUp = ({setUserID, dbSignUp, setSignUpData, signUpData, userID}) => {
 				<>
 					<h2>Sign Up</h2>
 					<form onSubmit={signUpOnSubmit}>
+						<label>Enter your name here:</label>
 						<input type="text" id="userName" name="userName" placeholder="Name" onChange={signUpOnChange} />
-						<input type="number" id="income" name="income" placeholder="Income" onChange={signUpOnChange} />
+						<label>Enter the amount to budget:</label>
+						<input type="number" id="income" name="income" placeholder="Amount to budget" onChange={signUpOnChange} />
+						<label>Enter your next payday:</label>
 						<input type="date" id="nextPay" name="nextPay" placeholder="Next Pay" onChange={signUpOnChange} />
 						<button type="submit" className="rectangleButton">
 							Next

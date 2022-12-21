@@ -1,5 +1,6 @@
 import {push, set} from "firebase/database";
 import {useState} from "react";
+import {Navigate} from "react-router-dom";
 
 const SpendingForm = ({dbSpending, setDaysSince, daysSince, userBalance, setUserBalance, dbBalance, daysUntil, setDaysUntil}) => {
    // Form input onChange for the spending data will be stored in this state
@@ -21,13 +22,13 @@ const SpendingForm = ({dbSpending, setDaysSince, daysSince, userBalance, setUser
    const spendingOnSubmit = (e) => {
        e.preventDefault();
        // Subtracts the userBalance by the expense cost
-       const tempCalc = userBalance - newSpendingData.expenseCost;
+       const tempCalc = userBalance - parseInt(newSpendingData.expenseCost);
        // Update the state with tempCalc
        setUserBalance(tempCalc);
        // Set tempCalc into firebase. Set because it will overwrite the previous entry (Updating the balance)
        set(dbBalance, tempCalc);
        // Push the key value pair of the expense to the spending node. Push to get a new firebase key.
-       push(dbSpending, {[newSpendingData.expenseName]: parseInt(newSpendingData.expenseCost)});
+       push(dbSpending, {[newSpendingData.expenseName]: newSpendingData.expenseCost});
        // Resets the form
        e.target.reset();
    };
@@ -52,17 +53,24 @@ const SpendingForm = ({dbSpending, setDaysSince, daysSince, userBalance, setUser
  
    return (
        <>
+        <section className="spendingAndButtons">
            <form onSubmit={spendingOnSubmit} className="spendingFormContainer">
-               <h2 className="dayCount">Day: {daysSince}</h2>
-               <h2 className="dayCount">Days until next pay: {daysUntil}</h2>
-               <input type="text" id="expenseName" name="expenseName" placeholder="Expense Name" onChange={spendingOnChange} />
-               <input type="number" id="expenseCost" name="expenseCost" placeholder="Expense Cost" onChange={spendingOnChange} />
+                <div>
+                    <h2 className="dayCount">Current Day: {daysSince}</h2>
+                    <h2 className="dayCount">Days until next pay: {daysUntil}</h2>
+                </div>
+               <input type="text" id="expenseName" name="expenseName" placeholder="Expense Name" required minLength="1" onChange={spendingOnChange} />
+               <input type="number" id="expenseCost" name="expenseCost" placeholder="Expense Cost" required minLength="1" onChange={spendingOnChange} />
                <button type="submit" className="rectangleButton">
                    Submit Expense
                </button>
            </form>
-           <button onClick={nextDay} className="nextDayButton">Next</button>
-				   <button onClick={prevDay} className="nextDayButton">Prev</button>
+           <div className="dayButtonsContainer">
+                <button onClick={nextDay} className="dayButton">Next Day</button>
+                <button onClick={prevDay} className="dayButton">Previous Day</button>
+           </div>
+        </section>
+        {userBalance ? null : <Navigate to="/" />}
        </>
    );
 };
