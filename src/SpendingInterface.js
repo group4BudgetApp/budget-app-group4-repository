@@ -1,6 +1,4 @@
-import SpendingForm from "./SpendingForm";
-import SpendingDisplay from "./SpendingDisplay";
-import Balance from "./Balance";
+
 
 const SpendingInterface = ({ Balance, SpendingForm, SpendingDisplay }) => {
     return (
