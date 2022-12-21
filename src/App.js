@@ -61,7 +61,7 @@ function App() {
         daysUntilPay();
         daysSincePay();
  
-    }, [signUpData, daysUntilPay, daysSincePay]);
+    }, [signUpData, daysSince, daysUntil]);
 
     // a useEffect which gets the user's spending data and parses it then stores it into the userSpendingData state. This returns an object which contains key value pair of all the expense the user has input into the form
     // This use effect runs when a date is calculated (so when the user logs in), and also when the userBalance State is updated (to reflect the newest entries added by the user)
