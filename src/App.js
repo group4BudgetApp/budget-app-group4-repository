@@ -60,8 +60,8 @@ function App() {
     useEffect(() => {
         daysUntilPay();
         daysSincePay();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [signUpData]);
+ 
+    }, [signUpData, daysUntilPay, daysSincePay]);
 
     // a useEffect which gets the user's spending data and parses it then stores it into the userSpendingData state. This returns an object which contains key value pair of all the expense the user has input into the form
     // This use effect runs when a date is calculated (so when the user logs in), and also when the userBalance State is updated (to reflect the newest entries added by the user)
@@ -74,8 +74,8 @@ function App() {
                 console.log("does not exists");
             }
         });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [daysSince, userBalance]);
+
+    }, [daysSince, userBalance, dbSpending]);
 
     return (
         <div className="wrapper">
