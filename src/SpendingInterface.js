@@ -5,7 +5,7 @@ import Balance from "./Balance";
 const SpendingInterface = ({getSpendingData, dbSpending, daysSince, setDaysSince, userSpendingData, userBalance, setUserBalance, dbBalance, daysUntil, setDaysUntil, userID}) => {
    return (
        <>
-           <section className="spendingContainer">
+           <section className="spendingContainer shadowStatic">
                <Balance userBalance={userBalance} daysUntil={daysUntil} />
                <div className="interactiveContainer">
                    <SpendingForm

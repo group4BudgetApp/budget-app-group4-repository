@@ -38,8 +38,11 @@ const SignUp = ({setUserID, dbSignUp, setSignUpData, signUpData, userID}) => {
 				<>
 					<h2>Sign Up</h2>
 					<form onSubmit={signUpOnSubmit}>
+						<label>Enter your name here:</label>
 						<input type="text" id="userName" name="userName" placeholder="Name" onChange={signUpOnChange} />
-						<input type="number" id="income" name="income" placeholder="Income" onChange={signUpOnChange} />
+						<label>Enter the amount to budget:</label>
+						<input type="number" id="income" name="income" placeholder="Amount to budget" onChange={signUpOnChange} />
+						<label>Enter your next payday:</label>
 						<input type="date" id="nextPay" name="nextPay" placeholder="Next Pay" onChange={signUpOnChange} />
 						<button type="submit" className="rectangleButton">
 							Next

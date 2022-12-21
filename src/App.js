@@ -75,7 +75,7 @@ function App() {
  
    return (
        <div className="wrapper">
-           <Routes>
+            <Routes>
                <Route path="/" element={<Home />} />
                <Route path="/signup" element={<SignUp userID={userID} setUserID={setUserID} dbSignUp={dbSignUp} signUpData={signUpData} setSignUpData={setSignUpData} />} />
                <Route
@@ -96,7 +96,7 @@ function App() {
                                dbBalance={dbBalance}
                                daysUntil={daysUntil}
                                setDaysSince={setDaysSince}
-								               setDaysUntil={setDaysUntil}
+							   setDaysUntil={setDaysUntil}
                            />
                        </>
                    }

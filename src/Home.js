@@ -7,10 +7,10 @@ const Home = () => {
 			<section className="welcomeContainer shadowStatic">
 				<SplashLogo />
 				<Link className="rectangleButton shadow" to="/signup">
-					<p>Create a new profile</p>
+					<h4>Create a new profile</h4>
 				</Link>
 				<Link className="rectangleButton shadow" to="/login">
-					<p>Log In</p>
+					<h4>Log In</h4>
 				</Link>
 			</section>
 		</>

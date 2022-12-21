@@ -52,17 +52,23 @@ const SpendingForm = ({dbSpending, setDaysSince, daysSince, userBalance, setUser
  
    return (
        <>
+        <section className="spendingAndButtons">
            <form onSubmit={spendingOnSubmit} className="spendingFormContainer">
-               <h2 className="dayCount">Day: {daysSince}</h2>
-               <h2 className="dayCount">Days until next pay: {daysUntil}</h2>
+                <div>
+                    <h2 className="dayCount">Current Day: {daysSince}</h2>
+                    <h2 className="dayCount">Days until next pay: {daysUntil}</h2>
+                </div>
                <input type="text" id="expenseName" name="expenseName" placeholder="Expense Name" onChange={spendingOnChange} />
                <input type="number" id="expenseCost" name="expenseCost" placeholder="Expense Cost" onChange={spendingOnChange} />
                <button type="submit" className="rectangleButton">
                    Submit Expense
                </button>
            </form>
-           <button onClick={nextDay} className="nextDayButton">Next</button>
-				   <button onClick={prevDay} className="nextDayButton">Prev</button>
+           <div className="dayButtonsContainer">
+                <button onClick={nextDay} className="dayButton">Next Day</button>
+                <button onClick={prevDay} className="dayButton">Previous Day</button>
+           </div>
+        </section>
        </>
    );
 };

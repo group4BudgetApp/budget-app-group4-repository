@@ -29,6 +29,7 @@ ul, li {
 
 .wrapper {
 width: 90%;
+height: 100vh;
 max-width: 1400px;
 margin: 0 auto;
 display: flex;
@@ -37,7 +38,13 @@ align-items: center;
 }
 
 body {
-  background-color: var(--card);
+background: radial-gradient(circle, var(--contrast) 10%, white 100%);
+    animation: 4s ease-in 0s infinite alternate background;
+}
+
+body, button {
+
+  background-size: cover;
   font-size: 1.6rem;
   font-family: 'Maitree', serif;
   color:var(--text);
@@ -56,33 +63,53 @@ img {
 }
 
 input {
+  border: var(--outline) 1px solid;
+  border-radius: 4px;
   height: 48px;
   width: 256px;
   padding: 8px;
 }
 
+input:hover {
+  border: var(--text) 1px solid;
+}
+
 button {
   cursor: pointer;
+}
 
+label {
+  padding: 15px;
 }
 
 /* Button styling start*/
 
-.rectangleButton {
+.rectangleButton, .dayButton {
   border: none;
   background-color: var(--highlight);
-  height: 48px;
-  width: 256px;
+  border-radius: 4px;
+  transition: background-color 0.1s;
   display: flex;
   justify-content: center;
   align-items: center; 
-  border-radius: 4px;
-  transition: background-color 0.1s;
 }
 
-.rectangleButton:hover,
-.rectangleButton:focus {
+.rectangleButton {
+  height: 48px;
+  width: 256px;
+}
+
+.dayButton {
+  padding: 20px;
+}
+
+.rectangleButton:hover, .rectangleButton:focus, .dayButton:hover, .dayButton:focus {
   background-color: var(--contrast);
+}
+
+.rectangleButton:active, .dayButton:active {
+  background-color: var(--highlight);
+  color: var(--outline);
 }
 
 /* Button styling end */
@@ -107,7 +134,7 @@ button {
 
 .welcomeContainer, .spendingContainer {
   background-color: white;
-  margin-top: 10vh;
+  margin-top: 10%;
   display: flex;
   border-radius: 10px;
 }
@@ -115,7 +142,7 @@ button {
 
 /* General Styling End */
 
-
+/* Welcome Container */
 .welcomeContainer {
   align-items: center;
   flex-direction: column;
@@ -136,7 +163,9 @@ margin-bottom: 48px;
 .welcomeContainer img {
   height: 200px;
   width: 200px;
-  object-fit: cover;  border-radius: 50%;
+  object-fit: cover; 
+  border: var(--highlight) 10px solid; 
+  border-radius: 50%;
 }
 
 .welcomeContainer h2 {
@@ -165,16 +194,24 @@ margin-bottom: 48px;
   margin-bottom: 24px;
 }
 
+
 .spendingContainer {
-  padding: 24px;
+  padding: 50px;
   flex-direction: column;
   gap: 24px;
   align-items: center;
 }
 
 .spendingContainer h2 {
-  font-size: 2.4rem;
+  font-size: 2.8rem;
   margin: 8px 0;
+}
+
+/* Spending Form */
+.spendingAndButtons {
+  width: 255px;
+  display: flex;
+  flex-direction: column;
 }
 
 .spendingFormContainer {
@@ -193,20 +230,31 @@ margin-bottom: 48px;
 }
 
 .spendingContainerDisplay {
-  padding: 48px;
-  width: 600px;
-  height: 500px;
+  margin: 50px;
+  padding: 30px;
+  width: 700px;
+  height: 300px;
   border: var(--outline) 1px solid;
   display: flex;
-
-gap: 200px;
-
+  gap: 200px;
 }
+
+/* .spendingFormContainer div h2 {
+  display: flex;
+  align-content: flex-start;
+} */
+
+.dayButtonsContainer {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+
 
 .interactiveContainer {
   display: flex;
   gap: 32px;
-    align-items: center;
+  align-items: center;
 }
 
 .userBalanceContainer {
@@ -219,3 +267,15 @@ gap: 200px;
   font-weight: 400;
 }
 
+/* Aniamtions */
+
+  @keyframes background{
+  from {
+    background-position: center;
+    background-size: 100% 100%;
+  }
+  to {
+    background-position: center;
+    background-size: 120% 120%;
+    }
+  }
