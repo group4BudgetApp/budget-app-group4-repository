@@ -76,6 +76,7 @@ input:hover {
 
 button {
   cursor: pointer;
+  border: none;
 }
 
 label {
@@ -85,7 +86,6 @@ label {
 /* Button styling start*/
 
 .rectangleButton, .dayButton {
-  border: none;
   background-color: var(--highlight);
   border-radius: 4px;
   transition: background-color 0.1s;
@@ -110,6 +110,10 @@ label {
 .rectangleButton:active, .dayButton:active {
   background-color: var(--highlight);
   color: var(--outline);
+}
+
+.deleteButton {
+  background: none;
 }
 
 /* Button styling end */
@@ -232,11 +236,15 @@ margin-bottom: 48px;
 .spendingContainerDisplay {
   margin: 50px;
   padding: 30px;
-  width: 700px;
+  width: 800px;
   height: 300px;
   border: var(--outline) 1px solid;
   display: flex;
   gap: 200px;
+}
+
+.spendingListDisplay li {
+  padding-block: 5px;
 }
 
 /* .spendingFormContainer div h2 {
@@ -276,6 +284,6 @@ margin-bottom: 48px;
   }
   to {
     background-position: center;
-    background-size: 120% 120%;
+    background-size: 130% 130%;
     }
   }
