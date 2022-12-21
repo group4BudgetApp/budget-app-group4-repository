@@ -241,16 +241,12 @@ margin-bottom: 48px;
   border: var(--outline) 1px solid;
   display: flex;
   gap: 200px;
+  overflow-y: scroll;
 }
 
 .spendingListDisplay li {
   padding-block: 5px;
 }
-
-/* .spendingFormContainer div h2 {
-  display: flex;
-  align-content: flex-start;
-} */
 
 .dayButtonsContainer {
   display: flex;

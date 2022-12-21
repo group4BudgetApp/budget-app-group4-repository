@@ -1,5 +1,6 @@
 import {push, set} from "firebase/database";
 import {useState} from "react";
+import {Navigate} from "react-router-dom";
 
 const SpendingForm = ({dbSpending, setDaysSince, daysSince, userBalance, setUserBalance, dbBalance, daysUntil, setDaysUntil}) => {
    // Form input onChange for the spending data will be stored in this state
@@ -58,8 +59,8 @@ const SpendingForm = ({dbSpending, setDaysSince, daysSince, userBalance, setUser
                     <h2 className="dayCount">Current Day: {daysSince}</h2>
                     <h2 className="dayCount">Days until next pay: {daysUntil}</h2>
                 </div>
-               <input type="text" id="expenseName" name="expenseName" placeholder="Expense Name" onChange={spendingOnChange} />
-               <input type="number" id="expenseCost" name="expenseCost" placeholder="Expense Cost" onChange={spendingOnChange} />
+               <input type="text" id="expenseName" name="expenseName" placeholder="Expense Name" required minLength="1" onChange={spendingOnChange} />
+               <input type="number" id="expenseCost" name="expenseCost" placeholder="Expense Cost" required minLength="1" onChange={spendingOnChange} />
                <button type="submit" className="rectangleButton">
                    Submit Expense
                </button>
@@ -69,6 +70,7 @@ const SpendingForm = ({dbSpending, setDaysSince, daysSince, userBalance, setUser
                 <button onClick={prevDay} className="dayButton">Previous Day</button>
            </div>
         </section>
+        {userBalance ? null : <Navigate to="/" />}
        </>
    );
 };

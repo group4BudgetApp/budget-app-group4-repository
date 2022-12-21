@@ -22,13 +22,18 @@ const SignUp = ({setUserID, dbSignUp, setSignUpData, signUpData, userID}) => {
 		e.target.reset();
 	};
 
+	// this allows this user to click on the unique ID and have it automatically copied to their clipboard
+	const copyId = () => {
+        navigator.clipboard.writeText(userID);
+    };  
+
 	return (
 		<section className="welcomeContainer shadowStatic">
 			{userID ? (
 				<>
-					<p className="message">Please use your profile id to login:</p>
+					<p className="message">Save this profile ID to login in the future. <br></br> Click below to copy.</p>
 					<p className="message">
-						<span className="userIDStyle">{userID}</span>
+						<span className="userIDStyle rectangleButton" onClick="copyId">{userID}</span>
 					</p>
 					<Link className="rectangleButton shadow" to="/login">
 						<p>Log In</p>
