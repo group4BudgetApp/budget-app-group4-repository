@@ -1,6 +1,7 @@
 import { push } from "firebase/database";
 import { Link } from "react-router-dom";
 
+// This component handles the Sign Up page of our app
 const SignUp = ({ setUserID, dbSignUp, setSignUpData, signUpData, userID }) => {
 	// Tracks changes in the SignUp component
 	const signUpOnChange = (e) => {

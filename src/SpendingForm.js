@@ -2,6 +2,7 @@ import { push, set } from "firebase/database";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 
+// This page handles the spending form of our app
 const SpendingForm = ({ dbSpending, daysSince, setUserBalance, dbBalance, userBalance, daysUntil, setDaysSince, setDaysUntil }) => {
     // Form input onChange for the spending data will be stored in this state
     const [newSpendingData, setNewSpendingData] = useState({});

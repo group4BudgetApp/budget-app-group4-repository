@@ -1,5 +1,4 @@
-
-
+// this page handles the spending interface of our app
 const SpendingInterface = ({ Balance, SpendingForm, SpendingDisplay }) => {
     return (
         <>
