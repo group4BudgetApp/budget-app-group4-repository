@@ -353,6 +353,11 @@ footer {
 /* MOBILE */
 @media (max-width: 550px) {
 
+  .welcomeContainer {
+    width: 90%;
+    padding: 64px 24px;
+  }
+
   .rectangleButton, .dayButton {
     width:100%;
   }
@@ -376,6 +381,10 @@ footer {
     margin-block: 10px;
   }
 
+  .spendingContainer {
+    width: 90%;
+  }
+
   .spendingAndButtons {
     width: 100%;
   }
@@ -392,6 +401,10 @@ footer {
     margin: 0;
     width: 100%;
     padding: 10px;
+  }
+
+  footer {
+    top: 105vh
   }
 }
 
