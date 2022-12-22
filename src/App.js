@@ -60,8 +60,8 @@ function App() {
     useEffect(() => {
         daysUntilPay();
         daysSincePay();
- 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [signUpData]);
 
     // a useEffect which gets the user's spending data and parses it then stores it into the userSpendingData state. This returns an object which contains key value pair of all the expense the user has input into the form
@@ -93,9 +93,9 @@ function App() {
                     element={
                         <>
                             <SpendingInterface
+                                signUpData={signUpData}
                                 Balance={<Balance userBalance={userBalance} daysUntil={daysUntil} />}
                                 SpendingForm={<SpendingForm
-
                                     dbSpending={dbSpending}
                                     daysSince={daysSince}
                                     setUserBalance={setUserBalance}
