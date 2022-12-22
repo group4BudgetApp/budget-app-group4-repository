@@ -72,7 +72,6 @@ function App() {
                 setUserSpendingData(snapshot.val());
             } else {
                 setUserSpendingData({});
-                console.log("does not exists");
             }
         });
         // The following comment is a workaround for a Netlify error that hadn't been encountered by Esther before

@@ -16,7 +16,6 @@ const SpendingForm = ({ dbSpending, daysSince, setUserBalance, dbBalance, userBa
             // Target the name attribute and use that as the property and pair it with the tempVal. Overwrites an existing value if the name matches to 'update' the value
             [e.target.name]: tempVal,
         });
-        console.log(newSpendingData);
     };
 
     // Handles the submission behavior of the SpendingForm
