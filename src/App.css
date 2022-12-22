@@ -275,6 +275,11 @@ margin-bottom: 48px;
   font-weight: 400;
 }
 
+footer {
+  color: white;
+  padding-top: 200px;
+}
+
 /* Aniamtions */
 
   @keyframes background{

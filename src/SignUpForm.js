@@ -39,6 +39,7 @@ const SignUp = ({ setUserID, dbSignUp, setSignUpData, signUpData, userID }) => {
 					<Link className="rectangleButton shadow" to="/login">
 						<p>Log In</p>
 					</Link>
+
 				</>
 			) : (
 				<>
@@ -55,9 +56,14 @@ const SignUp = ({ setUserID, dbSignUp, setSignUpData, signUpData, userID }) => {
 							Next
 						</button>
 					</form>
+
 				</>
+
 			)}
+
 		</section>
+
+		
 	);
 };
 

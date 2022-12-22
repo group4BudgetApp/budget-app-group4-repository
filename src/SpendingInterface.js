@@ -9,6 +9,7 @@ const SpendingInterface = ({ Balance, SpendingForm, SpendingDisplay }) => {
                     {SpendingDisplay}
                 </div>
             </section>
+
         </>
     );
 };
