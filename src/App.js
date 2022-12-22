@@ -60,7 +60,7 @@ function App() {
     useEffect(() => {
         daysUntilPay();
         daysSincePay();
-
+        // The following comment is a workaround for a Netlify error that hadn't been encountered by Esther before
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [signUpData]);
 
@@ -75,10 +75,12 @@ function App() {
                 console.log("does not exists");
             }
         });
-
+        // The following comment is a workaround for a Netlify error that hadn't been encountered by Esther before
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [daysSince, userBalance]);
 
+
+    // JSX
     return (
         <div className="wrapper">
             <Routes>
@@ -111,6 +113,8 @@ function App() {
                     }
                 />
             </Routes>
+            <footer>&copy; Gia, Heather, Yan and Jakob at Juno College 2022 ♥</footer>
+
         </div>
     );
 }

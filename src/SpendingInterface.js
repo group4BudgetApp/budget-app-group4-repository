@@ -1,4 +1,4 @@
-import { Navigate } from "react-router-dom";
+
 
 const SpendingInterface = ({ Balance, SpendingForm, SpendingDisplay, signUpData }) => {
     return (
@@ -11,7 +11,6 @@ const SpendingInterface = ({ Balance, SpendingForm, SpendingDisplay, signUpData 
                     {SpendingDisplay}
                 </div>
             </section>
-
 
         </>
     );

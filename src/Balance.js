@@ -1,5 +1,6 @@
 const Balance = ({ userBalance, daysUntil }) => {
 
+	// This component calculates and displays the Live Balance and Average Daily Budget
 	return (
 		<div className="userBalanceContainer">
 

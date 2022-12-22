@@ -58,6 +58,7 @@ const LoginForm = ({setUserID, setSignUpData, userID, setUserBalance, userBalanc
 					{userBalance ? <Navigate to="/spendingForm" /> : null}
 				</form>
 			</section>
+
 		</>
 	);
 };

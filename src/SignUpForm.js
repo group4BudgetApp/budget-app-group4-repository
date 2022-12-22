@@ -1,6 +1,7 @@
 import { push } from "firebase/database";
 import { Link } from "react-router-dom";
 
+// This component handles the Sign Up page of our app
 const SignUp = ({ setUserID, dbSignUp, setSignUpData, signUpData, userID }) => {
 	// Tracks changes in the SignUp component
 	const signUpOnChange = (e) => {
@@ -44,6 +45,7 @@ const SignUp = ({ setUserID, dbSignUp, setSignUpData, signUpData, userID }) => {
 					<Link className="rectangleButton shadow" to="/login">
 						<p>Log In</p>
 					</Link>
+
 				</>
 			) : (
 				<>
@@ -59,9 +61,14 @@ const SignUp = ({ setUserID, dbSignUp, setSignUpData, signUpData, userID }) => {
 							Next
 						</button>
 					</form>
+
 				</>
+
 			)}
+
 		</section>
+
+
 	);
 };
 

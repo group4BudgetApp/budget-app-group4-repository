@@ -1,6 +1,7 @@
 import { remove, ref, getDatabase } from 'firebase/database';
 import firebase from './firebase';
 
+// This component handles the Spending page of our app
 const SpendingDisplay = ({ daysSince, userSpendingData, userBalance, userID, setUserBalance }) => {
     // Taking the object of userSpendingData, then for each key value pair, store them inside an array, then store the entire data set into an array
 
@@ -54,6 +55,7 @@ const SpendingDisplay = ({ daysSince, userSpendingData, userBalance, userID, set
                     return <li><button className="deleteButton" value={Object.values(index[1])} onClick={deleteItem} id={index[0]} key={index[0]}>❌</button></li>;
                 })}
             </ul>
+
         </div>
     );
 };
