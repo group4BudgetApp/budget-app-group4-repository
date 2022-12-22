@@ -275,6 +275,10 @@ margin-bottom: 48px;
   font-weight: 400;
 }
 
+.spendingListDisplay .listHeader {
+  font-size: 1.3em;
+}
+
 footer {
   color: white;
   padding-top: 200px;
@@ -331,8 +335,18 @@ footer {
 }
 
 .spendingContainer h2 {
-  font-size: 2.2rem;
+  font-size: 1.8rem;
 }
+}
+
+.userBalanceContainer h2::after {
+  background-color: var(--card);
+  content: "";
+  width: 12%;
+  position: absolute;
+  display: block;
+  height: 0.4rem;
+  /* left: 44%; */
 }
 
 /* MOBILE */
