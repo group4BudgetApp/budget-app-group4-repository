@@ -113,7 +113,6 @@ function App() {
                 />
             </Routes>
             <footer>&copy; Gia, Heather, Yan and Jakob at Juno College 2022 ♥</footer>
-
         </div>
     );
 }

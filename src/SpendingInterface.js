@@ -1,9 +1,8 @@
-
-
-const SpendingInterface = ({ Balance, SpendingForm, SpendingDisplay, signUpData }) => {
+const SpendingInterface = ({ Balance, SpendingForm, SpendingDisplay}) => {
     return (
         <>
-            <h1 className="greetingMesssage">Hi {signUpData.userName}, let's start budgeting!</h1>
+            {/* Future feature planned: adoooorable welcome message! */}
+            {/* <h1 className="greetingMessage">Hi {signUpData.userName}, let's start budgeting!</h1> */}
             <section className="spendingContainer shadowStatic">
                 {Balance}
                 <div className="interactiveContainer">
