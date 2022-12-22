@@ -32,6 +32,8 @@ function App() {
     const dbSpending = ref(database, `/userProfiles/${userID}/spending/${daysSince}/`);
     // referencing the user's balance on firebase
     const dbBalance = ref(getDatabase(firebase), `/userProfiles/${userID}/balance`);
+    // login state
+    const [userLogin, setUserLogin] = useState(false);
 
     // Constant to convert milliseconds to days
     const toDay = 1 / 24 / 60 / 60 / 1000;
@@ -87,7 +89,7 @@ function App() {
                 <Route path="/signup" element={<SignUp userID={userID} setUserID={setUserID} dbSignUp={dbSignUp} signUpData={signUpData} setSignUpData={setSignUpData} />} />
                 <Route
                     path="/login"
-                    element={<LoginForm setUserID={setUserID} setSignUpData={setSignUpData} userID={userID} setUserBalance={setUserBalance} userBalance={userBalance} dbBalance={dbBalance} />}
+                    element={<LoginForm setUserID={setUserID} setSignUpData={setSignUpData} userID={userID} setUserBalance={setUserBalance} dbBalance={dbBalance} setUserLogin={setUserLogin} userLogin={userLogin} />}
                 />
                 <Route
                     path="/spendingForm"
@@ -105,6 +107,8 @@ function App() {
                                     daysUntil={daysUntil}
                                     setDaysSince={setDaysSince}
                                     setDaysUntil={setDaysUntil}
+                                    userLogin={userLogin}
+
                                 />}
                                 SpendingDisplay={<SpendingDisplay daysSince={daysSince} userSpendingData={userSpendingData} userBalance={userBalance} userID={userID} setUserBalance={setUserBalance} />}
                             />

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Navigate } from "react-router-dom";
 
 // This page handles the spending form of our app
-const SpendingForm = ({ dbSpending, daysSince, setUserBalance, dbBalance, userBalance, daysUntil, setDaysSince, setDaysUntil }) => {
+const SpendingForm = ({ dbSpending, daysSince, setUserBalance, dbBalance, userBalance, daysUntil, setDaysSince, setDaysUntil, userLogin }) => {
     // Form input onChange for the spending data will be stored in this state
     const [newSpendingData, setNewSpendingData] = useState({});
     // Tracks changes in the SpendingForm
@@ -20,6 +20,8 @@ const SpendingForm = ({ dbSpending, daysSince, setUserBalance, dbBalance, userBa
 
     // Handles the submission behavior of the SpendingForm
     const spendingOnSubmit = (e) => {
+        console.log(userBalance / daysSince);
+
         e.preventDefault();
         // Subtracts the userBalance by the expense cost
         const tempCalc = userBalance - parseInt(newSpendingData.expenseCost);
@@ -30,7 +32,10 @@ const SpendingForm = ({ dbSpending, daysSince, setUserBalance, dbBalance, userBa
         // Push the key value pair of the expense to the spending node. Push to get a new firebase key.
         push(dbSpending, { [newSpendingData.expenseName]: newSpendingData.expenseCost });
         // Resets the form
+
         e.target.reset();
+
+
     };
 
     const nextDay = () => {
@@ -66,12 +71,13 @@ const SpendingForm = ({ dbSpending, daysSince, setUserBalance, dbBalance, userBa
                     </button>
                 </form>
                 <div className="dayButtonsContainer">
-                    <button onClick={nextDay} className="dayButton">Next Day</button>
                     <button onClick={prevDay} className="dayButton">Previous Day</button>
+                    <button onClick={nextDay} className="dayButton">Next Day</button>
+
                 </div>
             </section>
             {/* if there is no userBalance after a hard refresh, return to Home */}
-            {userBalance ? null : <Navigate to="/" />}
+            {!userLogin ? <Navigate to="/" /> : null}
         </>
     );
 
