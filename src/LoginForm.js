@@ -1,4 +1,4 @@
-import { get, ref, getDatabase, set } from "firebase/database";
+import { get, ref, getDatabase } from "firebase/database";
 import firebase from "./firebase";
 import { Navigate } from "react-router-dom";
 
