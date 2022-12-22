@@ -30,7 +30,7 @@ const SpendingDisplay = ({ daysSince, userSpendingData, userBalance, userID, set
                 {/* Map through the array to display the information which we are looking to display */}
                 {dataArray.map((index) => {
                     // Object.keys returns the key of the object which in this case, represents the expense name
-                    return <li key={index[0]}>{Object.keys(index[1])}</li>;
+                    return <li key={index[0] + `name`}>{Object.keys(index[1])}</li>;
                 })}
             </ul>
             <ul className="spendingListDisplay">
@@ -39,7 +39,7 @@ const SpendingDisplay = ({ daysSince, userSpendingData, userBalance, userID, set
                 </li>
                 {dataArray.map((index) => {
                     // Object.values returns the key of the object which in this case, represents the expense cost
-                    return <li key={index[0]}>${Object.values(index[1])}</li>;
+                    return <li key={index[0] + `value`}>${Object.values(index[1])}</li>;
                 })}
 
             </ul>
@@ -51,7 +51,7 @@ const SpendingDisplay = ({ daysSince, userSpendingData, userBalance, userID, set
                 {/* Map through the array to display the information which we are looking to display */}
                 {dataArray.map((index) => {
                     //item delete button
-                    return <li><button className="deleteButton" value={Object.values(index[1])} onClick={deleteItem} id={index[0]} key={index[0]}>❌</button></li>;
+                    return <li key={index[0] + `button`}><button className="deleteButton" value={Object.values(index[1])} onClick={deleteItem} id={index[0]} >❌</button></li>;
                 })}
             </ul>
 
