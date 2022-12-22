@@ -295,6 +295,7 @@ footer {
   position: absolute;
   color: white;
   top: 95vh;
+  text-shadow:1px 0 .5px var(--text), 1px .5px .5px var(--text),0px 0 0 var(--text), 0 0px 0 var(--text);
 }
 
 /* Aniamtions */
