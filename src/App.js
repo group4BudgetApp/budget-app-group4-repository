@@ -60,8 +60,8 @@ function App() {
     useEffect(() => {
         daysUntilPay();
         daysSincePay();
-    // The following comment is a workaround for a Netlify error that hadn't been encountered by Esther before
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // The following comment is a workaround for a Netlify error that hadn't been encountered by Esther before
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [signUpData]);
 
     // a useEffect which gets the user's spending data and parses it then stores it into the userSpendingData state. This returns an object which contains key value pair of all the expense the user has input into the form
@@ -95,9 +95,9 @@ function App() {
                     element={
                         <>
                             <SpendingInterface
+                                signUpData={signUpData}
                                 Balance={<Balance userBalance={userBalance} daysUntil={daysUntil} />}
                                 SpendingForm={<SpendingForm
-
                                     dbSpending={dbSpending}
                                     daysSince={daysSince}
                                     setUserBalance={setUserBalance}
@@ -113,6 +113,8 @@ function App() {
                     }
                 />
             </Routes>
+            <footer>&copy; Gia, Heather, Yan and Jakob at Juno College 2022 ♥</footer>
+
         </div>
     );
 }

@@ -55,6 +55,7 @@ const SpendingDisplay = ({ daysSince, userSpendingData, userBalance, userID, set
                     return <li><button className="deleteButton" value={Object.values(index[1])} onClick={deleteItem} id={index[0]} key={index[0]}>❌</button></li>;
                 })}
             </ul>
+
         </div>
     );
 };

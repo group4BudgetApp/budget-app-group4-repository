@@ -137,9 +137,16 @@ label {
 
 /* Shadow styling end */
 
+.greetingMessage {
+  font-size: 2.4rem;
+  position: absolute;
+  margin: 36px 0 0 0 ;
+}
+
+
 .welcomeContainer, .spendingContainer {
   background-color: white;
-  margin-top: 10%;
+  margin-top: 5%;
   display: flex;
   border-radius: 10px;
 }
@@ -275,6 +282,15 @@ margin-bottom: 48px;
   font-weight: 400;
 }
 
+.spendingListDisplay .listHeader {
+  font-size: 1.3em;
+}
+
+footer {
+  color: white;
+  padding-top: 200px;
+}
+
 /* Aniamtions */
 
   @keyframes background{
@@ -326,8 +342,18 @@ margin-bottom: 48px;
 }
 
 .spendingContainer h2 {
-  font-size: 2.2rem;
+  font-size: 1.8rem;
 }
+}
+
+.userBalanceContainer h2::after {
+  background-color: var(--card);
+  content: "";
+  width: 12%;
+  position: absolute;
+  display: block;
+  height: 0.4rem;
+  /* left: 44%; */
 }
 
 /* MOBILE */
