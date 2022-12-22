@@ -27,6 +27,12 @@ const SignUp = ({ setUserID, dbSignUp, setSignUpData, signUpData, userID }) => {
 		navigator.clipboard.writeText(userID);
 	};
 
+	// Variables to set the minimum date to today
+	const today = new Date().toISOString().substring(0, 10);
+	// Setting up variable to determine the maximum day which will be set 30 days from today
+	const limitDay = new Date();
+	const maxDate = new Date(limitDay.setDate(limitDay.getDate() + 30)).toISOString().substring(0, 10);
+
 	return (
 		<section className="welcomeContainer shadowStatic">
 			{userID ? (
@@ -48,7 +54,7 @@ const SignUp = ({ setUserID, dbSignUp, setSignUpData, signUpData, userID }) => {
 						<label>Enter the amount to budget:</label>
 						<input type="number" id="income" name="income" placeholder="Amount to budget" onChange={signUpOnChange} />
 						<label>Enter your next payday:</label>
-						<input type="date" id="nextPay" name="nextPay" placeholder="Next Pay" onChange={signUpOnChange} />
+						<input type="date" id="nextPay" name="nextPay" placeholder="Next Pay" onChange={signUpOnChange} min={today} max={maxDate} />
 						<button type="submit" className="rectangleButton">
 							Next
 						</button>
