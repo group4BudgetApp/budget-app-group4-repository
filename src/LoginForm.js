@@ -1,9 +1,9 @@
-import {get, ref, getDatabase} from "firebase/database";
+import { get, ref, getDatabase, set } from "firebase/database";
 import firebase from "./firebase";
-import {Navigate} from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 // Component responsible for receiving the userID to retrieve the user's profile information
-const LoginForm = ({setUserID, setSignUpData, userID, setUserBalance, userBalance, dbBalance}) => {
+const LoginForm = ({ setUserID, setSignUpData, userID, setUserBalance, dbBalance, setUserLogin, userLogin }) => {
 	// referencing the user's signUpData
 	const dbInitData = ref(getDatabase(firebase), `/userProfiles/${userID}/signUpData`);
 
@@ -20,8 +20,10 @@ const LoginForm = ({setUserID, setSignUpData, userID, setUserBalance, userBalanc
 			if (snapshot.exists()) {
 				// Setting the signUpData into a state
 				setSignUpData(snapshot.val());
+				// set user as 'logged in'
+				setUserLogin(!userLogin);
 			} else {
-				alert("Sign up data could not be found");
+				alert("Please check your profile ID and try again");
 			}
 		});
 	};
@@ -32,7 +34,7 @@ const LoginForm = ({setUserID, setSignUpData, userID, setUserBalance, userBalanc
 			if (snapshot.exists()) {
 				setUserBalance(snapshot.val());
 			} else {
-			}
+			} return;
 		});
 	};
 
@@ -49,12 +51,12 @@ const LoginForm = ({setUserID, setSignUpData, userID, setUserBalance, userBalanc
 				<h2>Log In</h2>
 				<p className="message">Paste your profile ID below:</p>
 				<form onSubmit={loginOnSubmit}>
-					<input type="text" placeholder="Login with your ID" onChange={loginOnChange} maxLength="20" minLength={20} onKeyDown={ (evt) => evt.key === '.' && evt.preventDefault() }/>
+					<input type="text" placeholder="Login with your ID" onChange={loginOnChange} maxLength="20" minLength={20} onKeyDown={(evt) => evt.key === '.' && evt.preventDefault()} />
 					<button type="submit" className="rectangleButton">
 						Next
 					</button>
-					{/* When the user balance arrives from firebase into the userBalance state, render the <Navigate> from router which brings us to the spendingForm.  */}
-					{userBalance ? <Navigate to="/spendingForm" /> : null}
+					{/* Checks whether the user has successfully signed in. If true, lead them to the spendingForm component. If   */}
+					{userLogin ? <Navigate to="/spendingForm" /> : null}
 				</form>
 			</section>
 
