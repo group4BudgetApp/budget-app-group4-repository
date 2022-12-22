@@ -1,5 +1,5 @@
 import SplashLogo from "./SplashLogo";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // This component displays the initial page of our app
 const Home = () => {

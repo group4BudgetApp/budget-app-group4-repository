@@ -72,7 +72,7 @@ const SpendingForm = ({ dbSpending, daysSince, setUserBalance, dbBalance, userBa
                 </div>
             </section>
             {/* if there is no userBalance after a hard refresh, return to Home */}
-            {userBalance ? null : <Navigate to="/Home" />}
+            {userBalance ? null : <Navigate to="/" />}
         </>
     );
 

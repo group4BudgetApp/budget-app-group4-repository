@@ -1,7 +1,9 @@
-// this page handles the spending interface of our app
-const SpendingInterface = ({ Balance, SpendingForm, SpendingDisplay }) => {
+
+
+const SpendingInterface = ({ Balance, SpendingForm, SpendingDisplay, signUpData }) => {
     return (
         <>
+            <h1 className="greetingMesssage">Hi {signUpData.userName}, let's start budgeting!</h1>
             <section className="spendingContainer shadowStatic">
                 {Balance}
                 <div className="interactiveContainer">
