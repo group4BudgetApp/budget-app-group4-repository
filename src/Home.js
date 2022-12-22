@@ -1,16 +1,17 @@
 import SplashLogo from "./SplashLogo";
 import {Link} from "react-router-dom";
 
+// This component displays the initial page of our app
 const Home = () => {
 	return (
 		<>
 			<section className="welcomeContainer shadowStatic">
 				<SplashLogo />
 				<Link className="rectangleButton shadow" to="/signup">
-					<p>Create a new profile</p>
+					<h4>Create a new profile</h4>
 				</Link>
 				<Link className="rectangleButton shadow" to="/login">
-					<p>Log In</p>
+					<h4>Log In</h4>
 				</Link>
 			</section>
 		</>

@@ -1,5 +1,6 @@
 import logo from "./assets/budgetBuddyLogo.png";
 
+// this component handles our splash logo
 const SplashLogo = () => {
 	return (
 		<>

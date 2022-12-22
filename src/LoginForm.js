@@ -48,6 +48,7 @@ const LoginForm = ({setUserID, setSignUpData, userID, setUserBalance, userBalanc
 		<>
 			<section className="welcomeContainer shadowStatic">
 				<h2>Log In</h2>
+				<p className="message">Paste your profile ID below:</p>
 				<form onSubmit={loginOnSubmit}>
 					<input type="text" placeholder="Login with your ID" onChange={loginOnChange} maxLength="20" minLength={20} onKeyDown={ (evt) => evt.key === '.' && evt.preventDefault() }/>
 					<button type="submit" className="rectangleButton">
