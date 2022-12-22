@@ -75,6 +75,7 @@ const SpendingForm = ({ dbSpending, daysSince, setUserBalance, dbBalance, userBa
             {userBalance ? null : <Navigate to="/Home" />}
         </>
     );
+
 };
 
 export default SpendingForm;

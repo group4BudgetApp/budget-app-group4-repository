@@ -81,6 +81,7 @@ button {
 
 label {
   padding: 15px;
+
 }
 
 /* Button styling start*/
@@ -146,6 +147,7 @@ label {
 
 /* General Styling End */
 
+
 /* Welcome Container */
 .welcomeContainer {
   align-items: center;
@@ -204,6 +206,7 @@ margin-bottom: 48px;
   flex-direction: column;
   gap: 24px;
   align-items: center;
+
 }
 
 .spendingContainer h2 {
@@ -243,6 +246,7 @@ margin-bottom: 48px;
   gap: 200px;
   overflow-y: scroll;
 }
+
 
 .spendingListDisplay li {
   padding-block: 5px;
@@ -370,3 +374,4 @@ margin-bottom: 48px;
     padding: 10px;
   }
 }
+
