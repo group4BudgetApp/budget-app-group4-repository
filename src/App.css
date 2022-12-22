@@ -19,6 +19,7 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
 /* General Styling */
 html {
   font-size: 62.5%;
+  position: relative;
 }
 
 ul, li {
@@ -28,22 +29,20 @@ ul, li {
 }
 
 .wrapper {
-width: 90%;
-/* height: 100vh; */
-max-width: 1400px;
-margin: 0 auto;
-display: flex;
-flex-direction: column;
-align-items: center;
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 body {
-background: radial-gradient(circle, var(--contrast) 10%, white 100%);
-    animation: 4s ease-in 0s infinite alternate background;
+  background: radial-gradient(circle, var(--contrast) 10%, white 100%);
+  animation: 4s ease-in 0s infinite alternate background;
 }
 
 body, button {
-
   background-size: cover;
   font-size: 1.6rem;
   font-family: 'Maitree', serif;
@@ -159,7 +158,6 @@ label {
 .welcomeContainer {
   align-items: center;
   flex-direction: column;
-  /* border: var(--outline) 1px solid; */
   width: 360px;
   padding: 36px 0 ;
 
@@ -277,6 +275,11 @@ margin-bottom: 48px;
   gap: 64px;
 }
 
+.userBalanceContainer h2 {
+  border: 3px dashed var(--card);
+  padding: 10px;
+}
+
 .listHeader,
 .dayCount {
   font-weight: 400;
@@ -287,8 +290,9 @@ margin-bottom: 48px;
 }
 
 footer {
+  position: absolute;
   color: white;
-  padding-top: 250px;
+  top: 95vh;
 }
 
 /* Aniamtions */
@@ -344,16 +348,6 @@ footer {
 .spendingContainer h2 {
   font-size: 1.8rem;
 }
-}
-
-.userBalanceContainer h2::after {
-  background-color: var(--card);
-  content: "";
-  width: 12%;
-  position: absolute;
-  display: block;
-  height: 0.4rem;
-  /* left: 44%; */
 }
 
 /* MOBILE */
