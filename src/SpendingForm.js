@@ -56,8 +56,8 @@ const SpendingForm = ({ dbSpending, daysSince, setUserBalance, dbBalance, userBa
             <section className="spendingAndButtons">
                 <form onSubmit={spendingOnSubmit} className="spendingFormContainer">
                     <div>
-                        <h2 className="dayCount">Current Day: {daysSince}</h2>
-                        <h2 className="dayCount">Days until next pay: {daysUntil}</h2>
+                        <h3 className="dayCount">Current Day: {daysSince}</h3>
+                        <h3 className="dayCount">Days until next pay: {daysUntil}</h3>
                     </div>
                     <input type="text" id="expenseName" name="expenseName" placeholder="Expense Name" required minLength="1" onChange={spendingOnChange} />
                     <input type="number" id="expenseCost" name="expenseCost" placeholder="Expense Cost" required minLength="1" onChange={spendingOnChange} />
@@ -70,7 +70,8 @@ const SpendingForm = ({ dbSpending, daysSince, setUserBalance, dbBalance, userBa
                     <button onClick={prevDay} className="dayButton">Previous Day</button>
                 </div>
             </section>
-            {userBalance ? null : <Navigate to="/" />}
+            {/* if there is no userBalance after a hard refresh, return to Home */}
+            {userBalance ? null : <Navigate to="/Home" />}
         </>
     );
 };
