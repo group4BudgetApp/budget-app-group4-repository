@@ -16,7 +16,6 @@ const SpendingDisplay = ({ daysSince, userSpendingData, userBalance, userID, set
 
         const tempCalc = userBalance + parseInt(e.target.value);
         setUserBalance(tempCalc);
-        console.log(e.target.id);
     };
 
 

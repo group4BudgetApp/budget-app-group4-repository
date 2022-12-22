@@ -32,7 +32,6 @@ const LoginForm = ({setUserID, setSignUpData, userID, setUserBalance, userBalanc
 			if (snapshot.exists()) {
 				setUserBalance(snapshot.val());
 			} else {
-				console.log(snapshot.val());
 			}
 		});
 	};
